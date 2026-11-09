@@ -83,7 +83,7 @@ h1 .r4{background:linear-gradient(90deg,var(--tq),var(--mor),var(--or),var(--tq)
 .h2 .uydu{background:var(--mor);box-shadow:0 0 16px var(--mor);top:auto;bottom:-6px}
 @keyframes don{to{transform:rotate(360deg)}}
 .yaziHalka{position:absolute;inset:-4%;animation:don 50s linear infinite}
-.yaziHalka text{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:4px;fill:rgba(255,255,255,.45)}
+.yaziHalka text{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0;fill:rgba(255,255,255,.45)}
 .rozet{position:absolute;padding:9px 14px;border-radius:14px;background:rgba(17,17,38,.82);border:1px solid var(--cizgi);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);animation:yuz 6s ease-in-out infinite}
 .rozet i{width:8px;height:8px;border-radius:50%;flex:none}
 .rz1{top:8%;left:-4%}.rz1 i{background:var(--tq);box-shadow:0 0 10px var(--tq)}
@@ -127,7 +127,10 @@ h2{font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,4
 .rz.yeni{background:var(--or);color:#1a0f02}.rz.ucr{background:rgba(40,213,215,.14);color:var(--tq);border:1px solid rgba(40,213,215,.35)}.rz.hit{background:rgba(163,77,245,.18);color:#d4b2ff;border:1px solid rgba(163,77,245,.4)}
 .not-k{font-size:13px;color:var(--sonuk)}
 .yakinda{opacity:.78}
-.kart.fikir{grid-column:span 2;background:linear-gradient(135deg,rgba(244,154,70,.12),rgba(163,77,245,.12));border-style:dashed;border-color:rgba(244,154,70,.35)}
+.sayac{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin:-6px 0 26px;padding:18px 24px;border-radius:20px;background:var(--kart);border:1px solid var(--cizgi)}
+.sy-ana{display:flex;align-items:baseline;gap:12px}.sy-ana b{font-family:Unbounded,sans-serif;font-size:40px;font-weight:800;color:var(--tq);font-variant-numeric:tabular-nums}.sy-ana span{color:var(--soluk);font-size:16px}
+.sy-alt{display:flex;flex-wrap:wrap;gap:8px}.sy-alt span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soluk);border:1px solid var(--cizgi);border-radius:999px;padding:5px 12px}.sy-alt b{color:var(--yaz)}
+.kart.fikir{background:linear-gradient(135deg,rgba(244,154,70,.12),rgba(163,77,245,.12));border-style:dashed;border-color:rgba(244,154,70,.35)}
 .yakinda .kilit{position:absolute;top:22px;right:22px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;color:var(--sonuk);border:1px solid var(--cizgi);border-radius:999px;padding:4px 10px}
 
 /* mini panel önizlemesi (KAFA kartı) */
@@ -300,7 +303,7 @@ h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infini
       </div>
     </div>
     <div class="yorunge" aria-hidden="true">
-      <svg class="yaziHalka" viewBox="0 0 200 200"><defs><path id="cember" d="M100,100 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/></defs><text><textPath href="#cember">CLAUDE + CODEX + BEN · VIBE KAFASI · KODLA ÜRET ÖĞREN EĞLEN · </textPath></text></svg>
+      <svg class="yaziHalka" viewBox="0 0 200 200"><defs><path id="cember" d="M100,100 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/></defs><text><textPath href="#cember" textLength="570" lengthAdjust="spacing">CLAUDE + CODEX + BEN · VIBE KAFASI · KODLA ÜRET ÖĞREN EĞLEN ·</textPath></text></svg>
       <div class="halka h2"><span class="uydu"></span></div>
       <div class="halka h1"><span class="uydu"></span></div>
       <div class="halka h3"></div>
@@ -312,7 +315,7 @@ h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infini
   </div>
 </section>
 
-<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span></div></div>
+<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span></div></div>
 
 <section class="akd-bant">
   <div class="kap">
@@ -326,6 +329,7 @@ h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infini
 <section id="araclar">
   <div class="kap">
     <div class="bb gor"><div class="ust-yazi">// Araç kutusu</div><h2>Bir dosya. Bir komut. Hazır.</h2><p>Her araç hiç kod bilmeyen biri için tasarlandı. Ne yapacağın her adımda yazıyor.</p></div>
+    <div class="sayac" id="sayac" hidden aria-live="polite"><div class="sy-ana"><b id="sy-top">0</b><span>kişi ücretsiz araçlarımızı aldı</span></div><div class="sy-alt" id="sy-alt"></div></div>
     <div class="bento">
       <article class="kart buyuk parlak gor">
         <div>
@@ -334,7 +338,7 @@ h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infini
           <h3>KAFA ASİSTAN</h3>
           <p>Senin Jarvis'in. Seni tanır, gününü planlar, söylediklerini unutmaz, senin gibi yazar ve sana dürüst davranır.</p>
           <ul><li>"Günaydın" de, günün 3 önemli işi gelsin</li><li>Kamerayla elinle, mikrofonla sesinle yönet</li><li>Bilgilerin sende kalır, kimseye gitmez</li></ul>
-          <div class="alt-sira"><a class="dug ana kucuk" href="kafa/">Örnek paneli aç</a><a class="dug cam kucuk" href="kilavuz/">Kullanım kılavuzu</a><span class="not-k">Kurulum dosyası çok yakında Telegram'da</span></div>
+          <div class="alt-sira"><a class="dug ana kucuk" href="https://t.me/vibekafasibot?start=kafa" target="_blank" rel="noopener">Telegram'dan al</a><a class="dug cam kucuk" href="kafa/">Örnek paneli aç</a><a class="dug cam kucuk" href="kilavuz/">Kullanım kılavuzu</a></div>
         </div>
         <a class="gercek" href="kafa/" aria-label="KAFA panelini aç">
           <video src="assets/kafa_panel.mp4" poster="assets/kafa_panel.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
@@ -362,19 +366,28 @@ h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infini
       <article class="kart yakinda gor"><span class="kilit">YAKINDA</span>
         <div class="ikon i-tq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20c-.5-2.4-1.8-4-3.5-4.8"/></svg></div>
         <h3>İLK MÜŞTERİ</h3>
-        <p>Önce sat, sonra yap. Para verilen 3 dert, tek cümlelik teklif ve ilk 10 kişiye hazır mesajlar.</p>
+        <p>Önce sat, sonra yap. Bildiğin işten ve tanıdığın insanlardan ilk ödeyen müşterine giden 7 günlük plan.</p>
+        <ul><li>Para verilen 3 dert ve tek cümlelik teklif</li><li>İlk 10 kişiye hazır mesajlar, itiraz cevapları</li><li>Her gün sayısal hedef, 7. gün net karar</li></ul>
       </article>
 
       <article class="kart yakinda gor" data-renk="or"><span class="kilit">YAKINDA</span>
         <div class="ikon i-or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 6v6c0 4.7 3.4 8.6 8 9.5 4.6-.9 8-4.8 8-9.5V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
         <h3>GÜVENLİ BAŞLANGIÇ</h3>
-        <p>Yeni projene kopyalanan hazır kurallar: önce plan, önce yedek, şifre koda yazılmaz.</p>
+        <p>Projene bir iş güvenliği tabelası as: yapay zekâ her oturumda 9 kuralı okur ve onlara göre çalışır.</p>
+        <ul><li>Önce plan, önce yedek, test etmeden "bitti" yok</li><li>Şifreler koda yazılmaz, GitHub'a gitmez</li><li>Claude Code, Codex ve sohbet için hazır</li></ul>
       </article>
 
       <article class="kart yakinda gor" data-renk="mor"><span class="kilit">YAKINDA</span>
         <div class="ikon i-mor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-4.5-4.5M11 8v3.5M11 14.5h.01"/></svg></div>
         <h3>KOD BEKÇİSİ</h3>
-        <p>Projeni tarar: açıkta kalan şifreler, eksik yedekler, tehlikeli ayarlar. "Şunu düzelt" listesi verir.</p>
+        <p>Projeni bir gece bekçisi gibi tarar ve "şunu düzelt" listesi bırakır. Hiçbir dosyana dokunmaz.</p>
+        <ul><li>Açıkta kalan API anahtarları ve şifreler</li><li>GitHub'a gidecek gizli dosyalar, eksik yedek</li><li>Herkese açık veritabanı ve riskli ayarlar</li></ul>
+      </article>
+      <article class="kart yakinda gor"><span class="kilit">YAKINDA</span>
+        <div class="ikon i-tq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.4 1.4 0 0 0 2 2l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.4 2.4-2-2z"/></svg></div>
+        <h3>ÇALIŞMIYOR</h3>
+        <p>Kırmızı hata mı çıktı? Usta tamirci gibi önce sebebi bulur, sonra küçük adımlarla çözer.</p>
+        <ul><li>Hatayı günlük Türkçeye çevirir</li><li>En olası sebepler, kanıtıyla</li><li>Yapay zekâya verilecek hazır komut</li></ul>
       </article>
       <article class="kart fikir gor" data-renk="or">
         <div class="ikon i-or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg></div>
@@ -434,6 +447,16 @@ h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infini
 // görünür olunca yumuşakça gel
 const go=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('ac');go.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.gor').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.bento,.adimlar,.guven')?(i%3)*.08:0)+'s';go.observe(el)});
+// sayaç: yalnız gerçek sayılar (assets/sayilar.json, bot istatistiğinden). Dosya yoksa sayaç görünmez.
+fetch('assets/sayilar.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+  if(!d||!d.araclar)return;const ad={mahkeme:'Mahkeme',cizgifilm:'Çizgi Film',kafa:'KAFA Asistan'};
+  const top=Object.values(d.araclar).reduce((a,b)=>a+(+b||0),0);if(top<1)return;
+  const el=document.getElementById('sayac'),n=document.getElementById('sy-top');el.hidden=false;
+  document.getElementById('sy-alt').innerHTML=Object.entries(d.araclar).filter(([k,v])=>v>0).map(([k,v])=>`<span>${ad[k]||k} <b>${(+v).toLocaleString('tr-TR')}</b></span>`).join('');
+  const az=matchMedia('(prefers-reduced-motion:reduce)').matches;if(az){n.textContent=top.toLocaleString('tr-TR');return}
+  new IntersectionObserver((g,o)=>{if(!g[0].isIntersecting)return;o.disconnect();const t0=performance.now();
+    (function f(t){const k=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-k,3);n.textContent=Math.round(top*e).toLocaleString('tr-TR');if(k<1)requestAnimationFrame(f)})(t0)}).observe(el);
+}).catch(()=>{});
 // kartlarda imleci takip eden ışık
 document.querySelectorAll('.kart').forEach(k=>k.addEventListener('pointermove',e=>{const r=k.getBoundingClientRect();k.style.setProperty('--mx',(e.clientX-r.left)+'px');k.style.setProperty('--my',(e.clientY-r.top)+'px')}));
 // arka planda yavaşça süzülen, birbirine bağlanan noktalar
