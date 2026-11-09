@@ -1,0 +1,21 @@
+name: Akademi kod temizliği
+# Her gün süresi dolan aylık giriş kodlarını akademi/anahtar.json'dan siler.
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  temizle:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 akademi/kod_temizle.py
+      - run: |
+          if ! git diff --quiet; then
+            git config user.name "vibekafasi"
+            git config user.email "vibekafasi@users.noreply.github.com"
+            git commit -am "Akademi: süresi dolan giriş kodu silindi"
+            git push
+          fi
