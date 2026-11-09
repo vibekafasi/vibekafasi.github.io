@@ -327,4 +327,11 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
       yazi('Katılım ve başarı belgesidir; resmî bir diploma ya da akredite bir sertifika değildir.', W / 2, 1610, '500 26px Inter', '#9A98B8');
     }
   }
+
+  // tanıtım videosu: sessiz başlar, düğmeyle ses açılır
+  var tv = document.getElementById('tanVid'), sd = document.getElementById('sesDug');
+  if (tv && sd) {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) { tv.removeAttribute('autoplay'); tv.pause(); }
+    sd.addEventListener('click', function () { if (tv.muted) { tv.muted = false; tv.currentTime = 0; tv.play().catch(function () {}); sd.textContent = '🔇 Sesi kapat'; } else { tv.muted = true; sd.textContent = '🔊 Sesi aç'; } });
+  }
 })();
