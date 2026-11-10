@@ -7,6 +7,13 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
   var D = oku(); D.bitti = D.bitti || {};
   var SIRA = window.AKD_SIRA || [], SOZ = window.AKD_SOZ || {};
   var ROZ = window.AKD_ROZET || [];
+  // isimsiz sayım (GoatCounter): çerez yok, kişisel veri yok, kod asla gönderilmez.
+  // Engellenmişse ya da çevrim dışıysa sessizce hiçbir şey yapmaz; her olay sayfa başına en fazla bir kez.
+  var OLAY = {}, KUYRUK = [], gcBekliyor = false;
+  function gcGonder() { try { var g = window.goatcounter; if (!(g && g.count)) return false; while (KUYRUK.length) { var o = KUYRUK.shift(); g.count({ path: o[0], title: o[1], event: true }); } return true; } catch (e) { return false; } }
+  function gcBekle() { if (gcBekliyor) return; gcBekliyor = true; var n = 0; (function tekrar() { if (gcGonder() || ++n > 24) { gcBekliyor = false; return; } setTimeout(tekrar, 500); })(); }
+  function olay(p, t) { try { if (OLAY[p]) return; OLAY[p] = 1; KUYRUK.push([p, t || p]); if (!gcGonder()) gcBekle(); } catch (e) {} }
+  function modNo(did) { var m = modOf(did); return m ? (+m.slice(1) + 1) : 0; }
   function modOf(did) { var x = SIRA.find(function (y) { return y[0] === did; }); return x ? x[2] : null; }
   function modulTam(m) { var l = SIRA.filter(function (y) { return y[2] === m; }); return l.length > 0 && l.every(function (y) { return D.bitti[y[0]]; }); }
   function rozetSay() { return ROZ.filter(function (r) { return modulTam(r.m); }).length; }
@@ -70,7 +77,7 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
   function dersKur() {
     var bt = document.getElementById('bitir'), not = document.querySelector('.bitti-not');
     function btGuncel() { var b = !!D.bitti[did]; bt.classList.toggle('yapildi', b); bt.classList.toggle('ana', !b); bt.textContent = b ? '✓ Bitirdin (geri al)' : '✓ Bu dersi bitirdim'; not.hidden = !b; }
-    if (bt) { btGuncel(); bt.addEventListener('click', function () { var once = modulTam(modOf(did)); if (D.bitti[did]) delete D.bitti[did]; else D.bitti[did] = Date.now(); yaz(D); btGuncel(); isaretle(); if (!once && modulTam(modOf(did))) rozetKutla(modOf(did)); }); }
+    if (bt) { btGuncel(); bt.addEventListener('click', function () { var once = modulTam(modOf(did)); if (D.bitti[did]) delete D.bitti[did]; else D.bitti[did] = Date.now(); yaz(D); btGuncel(); isaretle(); if (!once && modulTam(modOf(did))) { rozetKutla(modOf(did)); olay('modul-' + modNo(did) + '-bitti', 'Modül ' + modNo(did) + ' sonuna gelindi'); } }); }
     var sorular = document.querySelectorAll('.soru'), cevap = 0, dogruSay = 0;
     sorular.forEach(function (s) {
       var dg = +s.getAttribute('data-dogru');
@@ -89,6 +96,32 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
       });
     });
     kopyaKur();
+    var mn = modNo(did);
+    if (mn) {
+      olay('modul-' + mn + '-acildi', 'Modül ' + mn + ' açıldı');
+      var ayni = SIRA.filter(function (y) { return y[2] === modOf(did); }), sonDers = ayni.length && ayni[ayni.length - 1][0] === did;
+      var son = document.getElementById('dersSonu');
+      if (sonDers && son) {
+        var bitti = function () { olay('modul-' + mn + '-bitti', 'Modül ' + mn + ' sonuna gelindi'); };
+        if ('IntersectionObserver' in window) { var io = new IntersectionObserver(function (g) { g.forEach(function (x) { if (x.isIntersecting) { bitti(); io.disconnect(); } }); }); io.observe(son); }
+        else addEventListener('scroll', function () { var r = son.getBoundingClientRect(); if (r.top < innerHeight) bitti(); }, { passive: true });
+      }
+    }
+    anlasildiKur();
+  }
+  function anlasildiKur() {
+    var k = document.getElementById('anlasildi'); if (!k) return; k.hidden = false;
+    var slug = k.getAttribute('data-slug'), ANK = 'vkAnlasildi', kayit = {};
+    try { kayit = JSON.parse(localStorage.getItem(ANK) || '{}') || {}; } catch (e) { kayit = {}; }
+    var tes = k.querySelector('.an-tesekkur'), dug = k.querySelectorAll('.an-dug');
+    function goster(c) { dug.forEach(function (b) { b.disabled = true; b.classList.toggle('secili', b.getAttribute('data-c') === c); }); tes.hidden = false; }
+    if (kayit[slug]) goster(kayit[slug]);
+    dug.forEach(function (b) { b.addEventListener('click', function () {
+      if (kayit[slug]) return; var c = b.getAttribute('data-c'); kayit[slug] = c;
+      try { localStorage.setItem(ANK, JSON.stringify(kayit)); } catch (e) {}
+      olay('ders-' + slug + (c === 'evet' ? '-anlasildi' : '-anlasilmadi'), (c === 'evet' ? '👍 Anlaşıldı: ' : '👎 Anlaşılmadı: ') + slug);
+      goster(c);
+    }); });
   }
   if (ders) {
     D.son = did; yaz(D);
@@ -128,16 +161,17 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
       if (!sessiz) { msj.textContent = 'Açılıyor…'; msj.className = 'kl-mesaj'; }
       return kodla(kod).then(function (kHam) {
         try { localStorage.setItem(KK, normal(kod)); sessionStorage.setItem(KS, ub64(kHam)); } catch (e) {}
-        return icerikAc(kHam);
+        return icerikAc(kHam).then(function () { if (!sessiz) olay('kilit-acildi', 'Giriş kodu kabul edildi'); });
       }).catch(function () {
         try { sessionStorage.removeItem(KS); } catch (e) {}
-        if (sessiz) { try { localStorage.removeItem(KK); } catch (e) {} msj.textContent = 'Kayıtlı kodunun süresi doldu. Bu ayın kodunu bottan alabilirsin.'; msj.className = 'kl-mesaj hata'; }
-        else { msj.textContent = 'Bu kod çalışmadı. Doğru yazdığından emin ol ya da bu ayın kodunu bottan yeniden al.'; msj.className = 'kl-mesaj hata'; }
+        if (sessiz) { olay('kilit-gorundu', 'Kilitli ders: kod kutusu göründü'); try { localStorage.removeItem(KK); } catch (e) {} msj.textContent = 'Kayıtlı kodunun süresi doldu. Bu ayın kodunu bottan alabilirsin.'; msj.className = 'kl-mesaj hata'; }
+        else { olay('kilit-hatali', 'Hatalı kod girildi'); msj.textContent = 'Bu kod çalışmadı. Doğru yazdığından emin ol ya da bu ayın kodunu bottan yeniden al.'; msj.className = 'kl-mesaj hata'; }
       });
     }
-    form.addEventListener('submit', function (e) { e.preventDefault(); if (normal(inp.value).length < 8) { msj.textContent = 'Kod VK-XXXX-XXXX biçiminde olmalı.'; msj.className = 'kl-mesaj hata'; return; } dene(inp.value, false); });
+    form.addEventListener('submit', function (e) { e.preventDefault(); if (normal(inp.value).length < 8) { olay('kilit-hatali', 'Hatalı kod girildi'); msj.textContent = 'Kod VK-XXXX-XXXX biçiminde olmalı.'; msj.className = 'kl-mesaj hata'; return; } dene(inp.value, false); });
     var kayitli = null, ham = null; try { kayitli = localStorage.getItem(KK); ham = sessionStorage.getItem(KS); } catch (e) {}
-    if (ham) icerikAc(b64(ham)).catch(function () { if (kayitli) dene(kayitli, true); });
+    if (!ham && !kayitli) olay('kilit-gorundu', 'Kilitli ders: kod kutusu göründü');
+    if (ham) icerikAc(b64(ham)).catch(function () { if (kayitli) dene(kayitli, true); else olay('kilit-gorundu', 'Kilitli ders: kod kutusu göründü'); });
     else if (kayitli) { msj.textContent = 'Kilit açılıyor…'; dene(kayitli, true); }
   }
 
@@ -257,9 +291,10 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     k.querySelectorAll('.sek').forEach(function (b) { b.addEventListener('click', function () { k.querySelectorAll('.sek').forEach(function (x) { x.classList.remove('su'); }); b.classList.add('su'); tip = b.getAttribute('data-tip'); yenile(); }); });
     function dosya() { return new Promise(function (r) { tuval.toBlob(function (b) { r(new File([b], 'vibe-kafasi-mezun-' + tip + '.png', { type: 'image/png' })); }, 'image/png'); }); }
     function indir(f) { var u = URL.createObjectURL(f), a = document.createElement('a'); a.href = u; a.download = f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(u); }, 4000); }
-    document.getElementById('mzIndir').addEventListener('click', function () { if (!ad.value.trim()) { ad.focus(); return; } dosya().then(indir); });
+    document.getElementById('mzIndir').addEventListener('click', function () { if (!ad.value.trim()) { ad.focus(); return; } olay('sertifika-olusturuldu', 'Mezun kartı / sertifika oluşturuldu'); dosya().then(indir); });
     document.getElementById('mzPaylas').addEventListener('click', function () {
       if (!ad.value.trim()) { ad.focus(); return; }
+      olay('sertifika-olusturuldu', 'Mezun kartı / sertifika oluşturuldu');
       dosya().then(function (f) {
         var metin = document.getElementById('mzMetin').textContent;
         if (navigator.canShare && navigator.canShare({ files: [f] })) navigator.share({ files: [f], text: metin }).catch(function () {});
