@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sayfa bulunamadı · Vibe Kafası</title>
+<meta name="description" content="Aradığın sayfa taşınmış ya da hiç olmamış olabilir. Ana sayfaya, Akademi'ye ya da Sözlük'e dön.">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#111126">
+<link rel="preload" href="/assets/yazi/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/yazi/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/yazi/yazi.css">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/assets/ikon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/ikon/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vk-ek.css">
+<style>
+:root{--bg:#0b0b1c;--mor:#A34DF5;--or:#F49A46;--tq:#28D5D7;--sari:#FFD60A;--soluk:#A9A6CF;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:radial-gradient(900px 600px at 80% -10%,#241a5c 0%,transparent 60%),radial-gradient(700px 500px at -10% 110%,rgba(40,213,215,.14),transparent 60%),var(--bg);color:#fff;font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.ust{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(1080px,100%);margin:0 auto;padding:18px max(16px,env(safe-area-inset-left,0px))}
+.marka{display:flex;align-items:center;gap:10px;text-decoration:none;font:900 16px Unbounded,sans-serif;letter-spacing:.4px}
+.marka img{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 2px rgba(163,77,245,.6),0 0 18px rgba(163,77,245,.45)}
+.marka b{color:var(--tq)}.marka i{font-style:normal;color:var(--or)}
+.dil{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font:800 12px Inter,sans-serif}
+.dil button{min-width:36px;height:30px;border:0;border-radius:999px;background:none;color:var(--soluk);font:inherit;cursor:pointer}
+.dil button[aria-pressed="true"]{background:var(--tq);color:#111126}
+main{flex:1;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px}
+.kutu{width:min(680px,100%);text-align:center}
+.no{font:900 clamp(96px,26vw,190px)/.9 Unbounded,sans-serif;letter-spacing:-6px;background:linear-gradient(90deg,var(--tq),var(--mor),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 60px rgba(163,77,245,.45))}
+h1{font:800 clamp(24px,5vw,36px)/1.15 Unbounded,sans-serif;margin:18px 0 12px;text-wrap:balance}
+.aciklama{color:var(--soluk);font-size:17px;max-width:520px;margin:0 auto}
+.ara{display:flex;gap:8px;margin:28px auto 0;max-width:520px;padding:6px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
+.ara:focus-within{border-color:var(--tq);box-shadow:0 0 0 3px rgba(40,213,215,.15)}
+.ara input{flex:1;min-width:0;border:0;background:none;color:#fff;font:500 16px Inter,sans-serif;padding:0 14px;outline:none}
+.ara input::placeholder{color:#8E8BB8}
+.dug{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:0;font:700 15px Inter,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s}
+.dug:hover{transform:translateY(-2px)}
+.ana{background:linear-gradient(135deg,var(--tq),#5be7e9);color:#08081a}
+.cam{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff}
+.dugler{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.oneri{margin-top:30px;text-align:left}
+.oneri h2{font:800 12px Inter,sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:var(--tq);margin-bottom:10px;text-align:center}
+.oneri ul{list-style:none;display:grid;gap:8px}
+.oneri a{display:block;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);text-decoration:none}
+.oneri a:hover{border-color:rgba(163,77,245,.6);background:rgba(163,77,245,.1)}
+.oneri b{display:block;font-size:15px}.oneri small{color:var(--soluk);font-size:13px}
+footer{text-align:center;color:#8E8BB8;font-size:13px;padding:0 16px 24px}
+:focus-visible{outline:2px solid var(--tq);outline-offset:3px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){.no{animation:yuz 6s ease-in-out infinite}@keyframes yuz{50%{transform:translateY(-8px)}}}
+</style>
+</head>
+<body>
+<header class="ust">
+ <a class="marka" href="/" id="mLink"><img src="/assets/ikon/logo-80.webp" alt="" width="40" height="40"><span><b>VIBE</b> <i>KAFASI</i></span></a>
+ <div class="dil" role="group" aria-label="Dil / Язык / Language"><button type="button" data-d="tr" aria-pressed="true">TR</button><button type="button" data-d="ru" aria-pressed="false">RU</button><button type="button" data-d="en" aria-pressed="false">EN</button></div>
+</header>
+<main id="icerik">
+ <div class="kutu">
+  <div class="no" aria-hidden="true">404</div>
+  <h1 data-m="baslik">Bu sayfa kayıp. Kafası bile bulamadı.</h1>
+  <p class="aciklama" data-m="aciklama">Aradığın sayfa taşınmış ya da hiç olmamış olabilir. Aşağıdan ara ya da bilinen bir yere dön.</p>
+  <form class="ara" id="araForm" role="search"><input id="araGir" name="ara" type="search" autocomplete="off" data-p="ara" placeholder="Ders, terim ya da sayfa ara…" aria-label="Ara"><button class="dug ana" type="submit" data-m="araDug">Ara</button></form>
+  <div class="dugler"><a class="dug cam" href="/" data-h="" data-m="ana">Ana sayfa</a><a class="dug cam" href="/akademi/" data-h="akademi/" data-m="akademi">Akademi</a><a class="dug cam" href="/akademi/sozluk/" data-h="akademi/sozluk/" data-m="sozluk">Sözlük</a></div>
+  <section class="oneri" id="oneri" hidden aria-labelledby="oneriB"><h2 id="oneriB" data-m="oneri">Bunu mu arıyordun?</h2><ul id="oneriListe"></ul></section>
+ </div>
+</main>
+<footer data-m="alt">Vibe Kafası · Kodla, Üret, Öğren, Eğlen!</footer>
+<script>
+(function(){
+  var M={
+    tr:{baslik:'Bu sayfa kayıp. Kafası bile bulamadı.',aciklama:'Aradığın sayfa taşınmış ya da hiç olmamış olabilir. Aşağıdan ara ya da bilinen bir yere dön.',ara:'Ders, terim ya da sayfa ara…',araDug:'Ara',ana:'Ana sayfa',akademi:'Akademi',sozluk:'Sözlük',oneri:'Bunu mu arıyordun?',alt:'Vibe Kafası · Kodla, Üret, Öğren, Eğlen!',title:'Sayfa bulunamadı · Vibe Kafası'},
+    ru:{baslik:'Страница потерялась. Даже Кафа не нашёл.',aciklama:'Возможно, страницу перенесли или её никогда не было. Найди нужное через поиск или вернись туда, где всё знакомо.',ara:'Урок, термин или страница…',araDug:'Найти',ana:'Главная',akademi:'Академия',sozluk:'Словарь',oneri:'Может, ты искал это?',alt:'Vibe Kafası · Кодируй, создавай, учись, веселись!',title:'Страница не найдена · Vibe Kafası'},
+    en:{baslik:'This page is lost. Even Kafa couldn’t find it.',aciklama:'The page may have moved or never existed. Search below or head back somewhere familiar.',ara:'Search lessons, terms or pages…',araDug:'Search',ana:'Home',akademi:'Academy',sozluk:'Glossary',oneri:'Were you looking for this?',alt:'Vibe Kafası · Code, Create, Learn, Have fun!',title:'Page not found · Vibe Kafası'}
+  };
+  var yol=location.pathname, m=yol.match(/^\/(ru|en)(\/|$)/), dil=m?m[1]:null;
+  if(!dil){var t=(navigator.languages||[navigator.language||'tr']);for(var i=0;i<t.length;i++){var k=(t[i]||'').slice(0,2).toLowerCase();if(k==='tr'||k==='ru'||k==='en'){dil=k;break}}}
+  try{var s=localStorage.getItem('vk-dil');if(!m&&s)dil=s}catch(e){}
+  dil=dil||'tr';
+  function uygula(d){
+    dil=d;var x=M[d],on=d==='tr'?'':'/'+d;
+    document.documentElement.lang=d;document.title=x.title;
+    document.querySelectorAll('[data-m]').forEach(function(e){e.textContent=x[e.getAttribute('data-m')]});
+    var g=document.getElementById('araGir');g.placeholder=x.ara;g.setAttribute('aria-label',x.araDug);
+    document.querySelectorAll('[data-h]').forEach(function(a){a.href=on+'/'+a.getAttribute('data-h')});
+    document.getElementById('mLink').href=on+'/';
+    document.querySelectorAll('.dil button').forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-d')===d?'true':'false')});
+    oner();
+  }
+  document.querySelectorAll('.dil button').forEach(function(b){b.addEventListener('click',function(){uygula(b.getAttribute('data-d'));try{localStorage.setItem('vk-dil',dil)}catch(e){}})});
+  document.getElementById('araForm').addEventListener('submit',function(e){e.preventDefault();var q=document.getElementById('araGir').value.trim();location.href=(dil==='tr'?'':'/'+dil)+'/akademi/?ara='+encodeURIComponent(q)});
+  function norm(s){return (s||'').toLowerCase().replace(/ı/g,'i').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9Ѐ-ӿ]+/g,' ').trim()}
+  function benzer(a,b){if(!a||!b)return 0;var A={},n=0,i;for(i=0;i<a.length-1;i++)A[a.substr(i,2)]=(A[a.substr(i,2)]||0)+1;for(i=0;i<b.length-1;i++){var k=b.substr(i,2);if(A[k]){A[k]--;n++}}return 2*n/(a.length+b.length-2||1)}
+  var veri={};
+  function oner(){
+    var aranan=norm(decodeURIComponent(yol).replace(/^\/(ru|en)\//,'/').replace(/index\.html$/,'').split('/').filter(Boolean).slice(-2).join(' '));
+    var liste=document.getElementById('oneriListe'),kutu=document.getElementById('oneri');
+    if(!aranan){kutu.hidden=true;return}
+    (veri[dil]?Promise.resolve(veri[dil]):fetch('/assets/arama/'+dil+'.json').then(function(r){return r.json()}).then(function(j){return veri[dil]=j.o})).then(function(o){
+      var s=o.map(function(x){var u=norm(x[2].replace(/^\/(ru|en)\//,'/').split('/').filter(Boolean).slice(-1)[0]||'');return [Math.max(benzer(aranan,u),benzer(aranan,norm(x[0]))),x]}).filter(function(y){return y[0]>.45}).sort(function(a,b){return b[0]-a[0]}).slice(0,4);
+      liste.innerHTML='';
+      s.forEach(function(y){var li=document.createElement('li'),a=document.createElement('a'),b=document.createElement('b'),k=document.createElement('small');a.href=y[1][2];b.textContent=y[1][0];k.textContent=y[1][1]||'';a.appendChild(b);a.appendChild(k);li.appendChild(a);liste.appendChild(li)});
+      kutu.hidden=!s.length;
+    }).catch(function(){kutu.hidden=true});
+  }
+  uygula(dil);
+})();
+</script>
+<script src="/assets/vk-ek.js" defer></script>
+</body>
+</html>

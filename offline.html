@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>İnternet yok · Vibe Kafası</title>
+<meta name="description" content="İnternet bağlantısı yok. Daha önce açtığın ya da indirdiğin dersleri yine okuyabilirsin.">
+<meta name="robots" content="noindex">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#111126">
+<link rel="stylesheet" href="/assets/yazi/yazi.css">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/assets/vk-ek.css">
+<style>
+:root{--bg:#0b0b1c;--mor:#A34DF5;--or:#F49A46;--tq:#28D5D7;--sari:#FFD60A;--soluk:#A9A6CF;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;background:radial-gradient(900px 600px at 80% -10%,#241a5c 0%,transparent 60%),radial-gradient(700px 500px at -10% 110%,rgba(40,213,215,.14),transparent 60%),var(--bg);color:#fff;font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.ust{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(1080px,100%);margin:0 auto;padding:18px max(16px,env(safe-area-inset-left,0px))}
+.marka{display:flex;align-items:center;gap:10px;text-decoration:none;font:900 16px Unbounded,sans-serif;letter-spacing:.4px}
+.marka img{width:40px;height:40px;border-radius:50%;box-shadow:0 0 0 2px rgba(163,77,245,.6),0 0 18px rgba(163,77,245,.45)}
+.marka b{color:var(--tq)}.marka i{font-style:normal;color:var(--or)}
+.dil{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font:800 12px Inter,sans-serif}
+.dil button{min-width:36px;height:30px;border:0;border-radius:999px;background:none;color:var(--soluk);font:inherit;cursor:pointer}
+.dil button[aria-pressed="true"]{background:var(--tq);color:#111126}
+main{flex:1;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px}
+.kutu{width:min(680px,100%);text-align:center}
+.no{font:900 clamp(96px,26vw,190px)/.9 Unbounded,sans-serif;letter-spacing:-6px;background:linear-gradient(90deg,var(--tq),var(--mor),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 60px rgba(163,77,245,.45))}
+h1{font:800 clamp(24px,5vw,36px)/1.15 Unbounded,sans-serif;margin:18px 0 12px;text-wrap:balance}
+.aciklama{color:var(--soluk);font-size:17px;max-width:520px;margin:0 auto}
+.ara{display:flex;gap:8px;margin:28px auto 0;max-width:520px;padding:6px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14)}
+.ara:focus-within{border-color:var(--tq);box-shadow:0 0 0 3px rgba(40,213,215,.15)}
+.ara input{flex:1;min-width:0;border:0;background:none;color:#fff;font:500 16px Inter,sans-serif;padding:0 14px;outline:none}
+.ara input::placeholder{color:#8E8BB8}
+.dug{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 20px;border-radius:999px;border:0;font:700 15px Inter,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .2s}
+.dug:hover{transform:translateY(-2px)}
+.ana{background:linear-gradient(135deg,var(--tq),#5be7e9);color:#08081a}
+.cam{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff}
+.dugler{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+.oneri{margin-top:30px;text-align:left}
+.oneri h2{font:800 12px Inter,sans-serif;letter-spacing:1.4px;text-transform:uppercase;color:var(--tq);margin-bottom:10px;text-align:center}
+.oneri ul{list-style:none;display:grid;gap:8px}
+.oneri a{display:block;padding:12px 16px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);text-decoration:none}
+.oneri a:hover{border-color:rgba(163,77,245,.6);background:rgba(163,77,245,.1)}
+.oneri b{display:block;font-size:15px}.oneri small{color:var(--soluk);font-size:13px}
+footer{text-align:center;color:#8E8BB8;font-size:13px;padding:0 16px 24px}
+:focus-visible{outline:2px solid var(--tq);outline-offset:3px}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:no-preference){.no{animation:yuz 6s ease-in-out infinite}@keyframes yuz{50%{transform:translateY(-8px)}}}
+</style>
+</head>
+<body>
+<header class="ust">
+ <a class="marka" href="/" id="mLink"><img src="/assets/ikon/logo-80.webp" alt="" width="40" height="40"><span><b>VIBE</b> <i>KAFASI</i></span></a>
+</header>
+<main id="icerik">
+ <div class="kutu">
+  <div class="no" aria-hidden="true" style="font-size:clamp(64px,16vw,120px);letter-spacing:-2px">offline</div>
+  <h1 data-m="baslik">İnternet yok, ama dersler burada.</h1>
+  <p class="aciklama" data-m="aciklama">Bağlantı gelince sayfa kendiliğinden yenilenir. Bu arada daha önce açtığın ya da indirdiğin dersleri okuyabilirsin.</p>
+  <div class="dugler"><button class="dug ana" type="button" id="yenile" data-m="yenile">Tekrar dene</button></div>
+  <section class="oneri" id="oneri" hidden aria-labelledby="oneriB"><h2 id="oneriB" data-m="liste">Bu cihazda kayıtlı sayfalar</h2><ul id="oneriListe"></ul></section>
+ </div>
+</main>
+<footer data-m="alt">Vibe Kafası · Kodla, Üret, Öğren, Eğlen!</footer>
+<script>
+(function(){
+  var M={
+    tr:{baslik:'İnternet yok, ama dersler burada.',aciklama:'Bağlantı gelince sayfa kendiliğinden yenilenir. Bu arada daha önce açtığın ya da indirdiğin dersleri okuyabilirsin.',yenile:'Tekrar dene',liste:'Bu cihazda kayıtlı sayfalar',alt:'Vibe Kafası · Kodla, Üret, Öğren, Eğlen!',title:'İnternet yok · Vibe Kafası'},
+    ru:{baslik:'Нет интернета, но уроки с тобой.',aciklama:'Когда связь вернётся, страница обновится сама. А пока можно читать уроки, которые ты уже открывал или скачал.',yenile:'Попробовать снова',liste:'Сохранено на этом устройстве',alt:'Vibe Kafası · Кодируй, создавай, учись, веселись!',title:'Нет интернета · Vibe Kafası'},
+    en:{baslik:'No internet, but your lessons are here.',aciklama:'The page reloads by itself when you are back online. Meanwhile, read the lessons you opened or downloaded before.',yenile:'Try again',liste:'Saved on this device',alt:'Vibe Kafası · Code, Create, Learn, Have fun!',title:'Offline · Vibe Kafası'}
+  };
+  var m=location.pathname.match(/^\/(ru|en)(\/|$)/),dil=m?m[1]:'tr',x=M[dil];
+  document.documentElement.lang=dil;document.title=x.title;
+  document.querySelectorAll('[data-m]').forEach(function(e){e.textContent=x[e.getAttribute('data-m')]});
+  document.getElementById('mLink').href=dil==='tr'?'/':'/'+dil+'/';
+  document.getElementById('yenile').addEventListener('click',function(){location.reload()});
+  addEventListener('online',function(){location.reload()});
+  if(!('caches' in window))return;
+  caches.open('vk-sayfa').then(function(c){return c.keys()}).then(function(k){
+    var on=dil==='tr'?'':'/'+dil, liste=document.getElementById('oneriListe');
+    var adr=k.map(function(r){return new URL(r.url).pathname}).filter(function(p){return dil==='tr'?!/^\/(ru|en)\//.test(p):p.indexOf(on+'/')===0}).sort();
+    return Promise.all(adr.slice(0,200).map(function(p){return caches.match(p).then(function(r){return r?r.text():''}).then(function(h){var t=(h.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)||[])[1]||p;var d=document.createElement('div');d.innerHTML=t;return [p,d.textContent.trim()]})})).then(function(s){
+      s.forEach(function(y){var li=document.createElement('li'),a=document.createElement('a'),b=document.createElement('b'),k=document.createElement('small');a.href=y[0];b.textContent=y[1];k.textContent=y[0];a.appendChild(b);a.appendChild(k);li.appendChild(a);liste.appendChild(li)});
+      document.getElementById('oneri').hidden=!s.length;
+    });
+  }).catch(function(){});
+})();
+</script>
+</body>
+</html>

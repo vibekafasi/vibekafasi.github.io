@@ -54,3 +54,11 @@
     addEventListener('resize', function () { if (innerWidth > 860 && nav.classList.contains('vk-acik')) ac(false); });
   } catch (e) {}
 })();
+/* Ek katman (arama, dil önerisi, çevrimdışı...): sayfa <head>'inde yoksa kendiliğinden yükle. */
+(function () {
+  try {
+    if (window.__vkEk || document.querySelector('script[src$="/assets/vk-ek.js"]')) return;
+    var c = document.createElement('link'); c.rel = 'stylesheet'; c.href = '/assets/vk-ek.css'; document.head.appendChild(c);
+    var s = document.createElement('script'); s.src = '/assets/vk-ek.js'; s.defer = true; document.head.appendChild(s);
+  } catch (e) {}
+})();
