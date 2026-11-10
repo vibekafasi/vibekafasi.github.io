@@ -12,7 +12,7 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
   var OLAY = {}, KUYRUK = [], gcBekliyor = false;
   function gcGonder() { try { var g = window.goatcounter; if (!(g && g.count)) return false; while (KUYRUK.length) { var o = KUYRUK.shift(); g.count({ path: o[0], title: o[1], event: true }); } return true; } catch (e) { return false; } }
   function gcBekle() { if (gcBekliyor) return; gcBekliyor = true; var n = 0; (function tekrar() { if (gcGonder() || ++n > 24) { gcBekliyor = false; return; } setTimeout(tekrar, 500); })(); }
-  function olay(p, t) { try { var dl = window.AKD_DIL; if (dl && dl !== 'tr') { p = dl + '-' + p; t = '[' + dl.toUpperCase() + '] ' + (t || p); } if (OLAY[p]) return; OLAY[p] = 1; KUYRUK.push([p, t || p]); if (!gcGonder()) gcBekle(); } catch (e) {} }
+  function olay(p, t) { if (document.prerendering) { document.addEventListener('prerenderingchange', function () { olay(p, t); }, { once: true }); return; } try { var dl = window.AKD_DIL; if (dl && dl !== 'tr') { p = dl + '-' + p; t = '[' + dl.toUpperCase() + '] ' + (t || p); } if (OLAY[p]) return; OLAY[p] = 1; KUYRUK.push([p, t || p]); if (!gcGonder()) gcBekle(); } catch (e) {} }
   function modNo(did) { var m = modOf(did); return m ? (+m.slice(1) + 1) : 0; }
   function modOf(did) { var x = SIRA.find(function (y) { return y[0] === did; }); return x ? x[2] : null; }
   function modulTam(m) { var l = SIRA.filter(function (y) { return y[2] === m; }); return l.length > 0 && l.every(function (y) { return D.bitti[y[0]]; }); }
@@ -389,7 +389,7 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     modKutu.forEach(function (m) {
       var mb = m.querySelector('.mb'); if (!mb) return;
       m.classList.add('katlanir'); mb.setAttribute('role', 'button'); mb.tabIndex = 0;
-      mb.setAttribute('aria-label', (ruM ? 'Открыть или закрыть модуль: ' : enM ? 'Open or close module: ' : 'Modülü aç / kapat: ') + (mb.querySelector('h2') ? mb.querySelector('h2').textContent : ''));
+      // erişilebilir ad, görünür başlık metninden gelir (WCAG 2.5.3: ayrı aria-label kaldırıldı)
       var ok = document.createElement('i'); ok.className = 'mod-ok'; ok.setAttribute('aria-hidden', 'true'); mb.appendChild(ok);
       modAc(m, m.id === acikM);
       mb.addEventListener('click', function () { modAc(m, m.classList.contains('kapali')); });
