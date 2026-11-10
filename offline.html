@@ -26,7 +26,7 @@ a{color:inherit}
 .dil{display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font:800 12px Inter,sans-serif}
 .dil button{min-width:36px;height:30px;border:0;border-radius:999px;background:none;color:var(--soluk);font:inherit;cursor:pointer}
 .dil button[aria-pressed="true"]{background:var(--tq);color:#111126}
-main{flex:1;display:grid;place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;padding:24px max(16px,env(safe-area-inset-left,0px)) 56px}
 .kutu{width:min(680px,100%);text-align:center}
 .no{font:900 clamp(96px,26vw,190px)/.9 Unbounded,sans-serif;letter-spacing:-6px;background:linear-gradient(90deg,var(--tq),var(--mor),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 18px 60px rgba(163,77,245,.45))}
 h1{font:800 clamp(24px,5vw,36px)/1.15 Unbounded,sans-serif;margin:18px 0 12px;text-wrap:balance}

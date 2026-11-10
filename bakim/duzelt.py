@@ -294,6 +294,55 @@ def hreflang_duzelt(h, yol):
 VIDEO_H2 = {'tr': 'Bütün videolar', 'ru': 'Все видео', 'en': 'All videos'}
 
 
+ARA_ETIKET = {'tr': 'Ara', 'ru': 'Поиск', 'en': 'Search'}
+PAYLAS = {'tr': 'Paylaş', 'ru': 'Поделиться', 'en': 'Share'}
+ICINDEKILER = {'tr': 'İçindekiler', 'ru': 'Содержание', 'en': 'Contents'}
+SVG_ARA = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+SVG_PAYLAS = '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/></svg>'
+
+
+def sabit_ogeler(h, yol, dil):
+    """Arama düğmesi, ders paylaş düğmesi ve içindekiler kutusunu sayfaya baştan yazar
+    (JavaScript sonradan eklerse sayfa kayar; baştan yazılınca kayma olmaz)."""
+    if '<div class="vk-sag">' in h and 'class="vk-ara-dug"' not in h:
+        h = h.replace('<div class="vk-sag">', f'<div class="vk-sag"><button type="button" class="vk-ara-dug" aria-label="{ARA_ETIKET[dil]} (/)" aria-haspopup="dialog" title="{ARA_ETIKET[dil]}">{SVG_ARA}</button>', 1)
+    if 'class="ders' not in h or '<div class="meta">' not in h:
+        return h
+    m = re.search(r'(<div class="meta">.*?)(</div>)', h, re.S)
+    if m and 'vk-paylas' not in m.group(1):
+        h = h[:m.end(1)] + f'<button type="button" class="vk-paylas">{SVG_PAYLAS}{PAYLAS[dil]}</button>' + h[m.end(1):]
+    if 'class="vk-icindekiler"' in h:
+        return h
+    bas = h.find('<div class="meta">'); son = h.find('<section class="anlasildi"', bas)
+    govde = h[bas:son if son > 0 else len(h)]
+    govde = re.sub(r'<section class="kilit".*?</section>', '', govde, flags=re.S)
+    bas_lar = [(i, re.sub(r'\s+', ' ', html.unescape(re.sub(r'<[^>]+>', '', t))).strip()) for i, t in re.findall(r'<h2 id="([^"]+)"[^>]*>(.*?)</h2>', govde, re.S)]
+    if len(bas_lar) < 3:
+        return h
+    ol = ''.join(f'<li><a href="#{i}">{esc(t)}</a></li>' for i, t in bas_lar)
+    kutu = (f'<details class="vk-icindekiler"><summary><span>{ICINDEKILER[dil]}</span><small>{len(bas_lar)}</small></summary>'
+            f'<nav aria-label="{ICINDEKILER[dil]}"><ol>{ol}</ol></nav></details>')
+    m = re.search(r'<div class="meta">.*?</div>', h, re.S)
+    return h[:m.end()] + kutu + h[m.end():]
+
+
+def kurs_ld(h):
+    """Akademi 'Course' verisine Google'ın istediği ücretsiz teklif (offers) bilgisini ekler (yoksa)."""
+    def f(m):
+        try:
+            v = json.loads(m.group(1))
+        except Exception:
+            return m.group(0)
+        if v.get('@type') != 'Course' or 'offers' in v:
+            return m.group(0)
+        v['offers'] = {"@type": "Offer", "price": 0, "priceCurrency": "USD", "category": "Free", "availability": "https://schema.org/InStock"}
+        inst = v.get('hasCourseInstance')
+        if isinstance(inst, dict) and 'courseSchedule' not in inst and 'courseWorkload' not in inst:
+            inst['courseWorkload'] = 'PT5H'
+        return '<script type="application/ld+json">' + json.dumps(v, ensure_ascii=False) + '</script>'
+    return re.sub(r'<script type="application/ld\+json">(\{"@context": "https://schema.org", "@type": "Course".*?)</script>', f, h, flags=re.S)
+
+
 def erisim(h, yol, dil):
     """Erişilebilirlik (WCAG) için küçük işaretleme düzeltmeleri; görünüm değişmez."""
     t = tr_yolu(yol)
@@ -338,6 +387,8 @@ def isle(dosya):
     h = tekrar_kimlik(h)
     h = gorsel_picture(h)
     h = erisim(h, yol, dil)
+    h = kurs_ld(h)
+    h = sabit_ogeler(h, yol, dil)
     if h != eski:
         dosya.write_text(h, encoding='utf-8')
         return True

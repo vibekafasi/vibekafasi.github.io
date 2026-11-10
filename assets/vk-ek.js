@@ -95,8 +95,9 @@
   guvenli(function () {
     var sag = d.querySelector('[data-vk-nav] .vk-sag');
     if (!sag || !('fetch' in window)) return;
-    var dug = el('button', { type: 'button', class: 'vk-ara-dug', 'aria-label': t.ara + ' (/)', 'aria-haspopup': 'dialog', title: t.ara + ' — ' + t.kisayol, html: ikon(IK.ara) });
-    sag.insertBefore(dug, sag.firstChild);
+    var dug = sag.querySelector('.vk-ara-dug');
+    if (!dug) { dug = el('button', { type: 'button', class: 'vk-ara-dug', 'aria-label': t.ara + ' (/)', 'aria-haspopup': 'dialog', html: ikon(IK.ara) }); sag.insertBefore(dug, sag.firstChild); }
+    dug.title = t.ara + ' — ' + t.kisayol;
     var dlg, giris, liste, durum, veri = null, sonuclar = [], aktif = -1;
     function norm(s) {
       return (s || '').toLocaleLowerCase(DIL === 'tr' ? 'tr' : DIL).replace(/ı/g, 'i').replace(/ё/g, 'е').normalize('NFD').replace(/[̀-ͯ]/g, '');
@@ -208,7 +209,7 @@
   /* ---------- ders sayfası: içindekiler, paylaş, kaydırılabilir tablolar ---------- */
   function basliklar(icerik) {
     return Array.prototype.filter.call(icerik.querySelectorAll('h2'), function (h) {
-      return !h.closest('.kilit, .anlasildi, [hidden], .vk-icindekiler') && h.textContent.trim();
+      return !h.closest('.kilit, .anlasildi, .akilda, .test, .kaynak, [hidden], .vk-icindekiler') && h.textContent.trim();
     });
   }
   function kimlikVer(h, i) {
@@ -217,15 +218,18 @@
     while (d.getElementById(s)) s += '-' + (i + 1);
     h.id = s; return s;
   }
-  function icindekilerKur(icerik) {
-    var eski = icerik.querySelector('.vk-icindekiler'); if (eski) eski.remove();
+  function icindekilerKur(icerik, yeniden) {
+    var eski = icerik.querySelector('.vk-icindekiler');
     var hs = basliklar(icerik); if (hs.length < 3) return;
     var meta = icerik.querySelector('.meta'); if (!meta) return;
-    var ol = el('ol');
-    hs.forEach(function (h, i) { ol.appendChild(el('li', null, [el('a', { href: '#' + kimlikVer(h, i), text: h.textContent.trim() })])); });
-    var det = el('details', { class: 'vk-icindekiler' }, [el('summary', { html: '<span>' + t.icindekiler + '</span><small>' + hs.length + '</small>' }), el('nav', { 'aria-label': t.icindekiler }, [ol])]);
-    if (innerWidth >= 900) det.open = true;
-    meta.parentNode.insertBefore(det, meta.nextSibling);
+    var det = eski, ol;
+    if (!eski || yeniden) {
+      /* sayfada hazır yoksa (ör. kilidi yeni açılan ders) burada kurulur */
+      ol = el('ol');
+      hs.forEach(function (h, i) { ol.appendChild(el('li', null, [el('a', { href: '#' + kimlikVer(h, i), text: h.textContent.trim() })])); });
+      det = el('details', { class: 'vk-icindekiler' }, [el('summary', { html: '<span>' + t.icindekiler + '</span><small>' + hs.length + '</small>' }), el('nav', { 'aria-label': t.icindekiler }, [ol])]);
+      if (eski) eski.replaceWith(det); else meta.parentNode.insertBefore(det, meta.nextSibling);
+    } else ol = eski.querySelector('ol');
     if ('IntersectionObserver' in window) {
       var linkler = ol.querySelectorAll('a'), gor = {};
       var io = new IntersectionObserver(function (g) {
@@ -240,13 +244,14 @@
     var icerik = d.querySelector('main.ders article.icerik');
     if (!icerik) return;
     var meta = icerik.querySelector('.meta');
-    if (meta && !meta.querySelector('.vk-paylas')) {
-      var h1 = icerik.querySelector('h1');
-      meta.appendChild(paylasDugmesi('vk-paylas', t.paylas, function () { return { title: (h1 ? h1.textContent.trim() : d.title), text: (icerik.querySelector('.ozet') || {}).textContent || '', url: location.origin + location.pathname }; }));
-    }
+    var h1 = icerik.querySelector('h1');
+    var dersVeri = function () { return { title: (h1 ? h1.textContent.trim() : d.title), text: (icerik.querySelector('.ozet') || {}).textContent || '', url: location.origin + location.pathname }; };
+    var hazir = meta && meta.querySelector('.vk-paylas');
+    if (hazir) hazir.addEventListener('click', function () { paylas(dersVeri()); });
+    else if (meta) meta.appendChild(paylasDugmesi('vk-paylas', t.paylas, dersVeri));
     icindekilerKur(icerik);
     var kilitli = d.getElementById('kilitIcerik');
-    if (kilitli && 'MutationObserver' in window) new MutationObserver(function () { if (!kilitli.hidden) { icindekilerKur(icerik); tablolar(); } }).observe(kilitli, { attributes: true, attributeFilter: ['hidden'] });
+    if (kilitli && 'MutationObserver' in window) new MutationObserver(function () { if (!kilitli.hidden) { icindekilerKur(icerik, true); tablolar(); } }).observe(kilitli, { attributes: true, attributeFilter: ['hidden'] });
   });
   function tablolar() {
     d.querySelectorAll('.tablo, .sar').forEach(function (x) {
