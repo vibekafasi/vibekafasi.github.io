@@ -7,7 +7,9 @@
     var yol = location.pathname.replace(/index\.html$/, '');
     nav.querySelectorAll('a[data-yol]').forEach(function (a) {
       var y = a.getAttribute('data-yol');
-      var akt = y === '/akademi/' ? (yol === '/akademi/' || (yol.indexOf('/akademi/') === 0 && !/\/akademi\/(sozluk|mezuniyet)\//.test(yol))) : yol.indexOf(y) === 0 && y !== '/';
+      var kok = /^\/(ru\/)?akademi\/$/.test(y);
+      var akt = kok ? (yol === y || (yol.indexOf(y) === 0 && !/\/akademi\/(sozluk|mezuniyet|videolar|mezunlar)\//.test(yol))) : (y.charAt(1) !== '#' && yol.indexOf(y) === 0);
+      if (y === '/akademi/mezuniyet/' && yol.indexOf('/akademi/mezunlar/') === 0) akt = true;
       if (akt) a.setAttribute('aria-current', 'page');
     });
     // kayan ışık
@@ -33,7 +35,7 @@
     var dug = nav.querySelector('.vk-menu-dug'), mob = nav.querySelector('.vk-mobil');
     function ac(a) {
       nav.classList.toggle('vk-acik', a); document.documentElement.classList.toggle('vk-kilit', a);
-      if (dug) { dug.setAttribute('aria-expanded', a ? 'true' : 'false'); dug.setAttribute('aria-label', a ? 'Menüyü kapat' : 'Menüyü aç'); }
+      if (dug) { dug.setAttribute('aria-expanded', a ? 'true' : 'false'); var ru = document.documentElement.lang === 'ru'; dug.setAttribute('aria-label', a ? (ru ? 'Закрыть меню' : 'Menüyü kapat') : (ru ? 'Открыть меню' : 'Menüyü aç')); }
       if (mob) { mob.setAttribute('aria-hidden', a ? 'false' : 'true'); if (a) { var ilk = mob.querySelector('a'); if (ilk) setTimeout(function () { ilk.focus(); }, 250); } }
     }
     if (dug) dug.addEventListener('click', function () { ac(!nav.classList.contains('vk-acik')); });

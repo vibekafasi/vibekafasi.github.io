@@ -114,7 +114,8 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     var slug = k.getAttribute('data-slug'), ANK = 'vkAnlasildi', kayit = {};
     try { kayit = JSON.parse(localStorage.getItem(ANK) || '{}') || {}; } catch (e) { kayit = {}; }
     var tes = k.querySelector('.an-tesekkur'), dug = k.querySelectorAll('.an-dug');
-    function goster(c) { dug.forEach(function (b) { b.disabled = true; b.classList.toggle('secili', b.getAttribute('data-c') === c); }); tes.hidden = false; }
+    var on = k.querySelector('.an-oneri');
+    function goster(c) { dug.forEach(function (b) { b.disabled = true; b.classList.toggle('secili', b.getAttribute('data-c') === c); }); tes.hidden = false; if (on && c === 'hayir') on.hidden = false; }
     if (kayit[slug]) goster(kayit[slug]);
     dug.forEach(function (b) { b.addEventListener('click', function () {
       if (kayit[slug]) return; var c = b.getAttribute('data-c'); kayit[slug] = c;
@@ -361,6 +362,55 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
       yazi('vibekafasi.github.io/akademi', W / 2, 1480, '800 38px Inter', '#6E3BD1'); yazi('@vibe.kafasi', W / 2, 1530, '600 32px Inter', '#F49A46');
       yazi('Katılım ve başarı belgesidir; resmî bir diploma ya da akredite bir sertifika değildir.', W / 2, 1610, '500 26px Inter', '#9A98B8');
     }
+  }
+
+  // data-olay taşıyan bağlantılar: isimsiz sayım (öneri, mezun, video)
+  document.addEventListener('click', function (e) { try { var a = e.target.closest && e.target.closest('[data-olay]'); if (a) olay(a.getAttribute('data-olay'), a.getAttribute('data-olay')); } catch (x) {} });
+
+  // video kartları: dokununca oynat (önceden yüklemez)
+  document.querySelectorAll('.vk-vid').forEach(function (k) {
+    var d = k.querySelector('.vv-oyna'); if (!d) return;
+    d.addEventListener('click', function () {
+      var v = document.createElement('video'); v.src = k.getAttribute('data-src'); v.poster = k.getAttribute('data-poster') || '';
+      v.controls = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'auto';
+      k.querySelector('.vv-ekran').innerHTML = ''; k.querySelector('.vv-ekran').appendChild(v); k.classList.add('oynuyor');
+      document.querySelectorAll('.vk-vid video').forEach(function (o) { if (o !== v) o.pause(); });
+      v.play().catch(function () {}); olay('video-' + k.getAttribute('data-id') + '-oynatildi', 'Video oynatıldı: ' + k.getAttribute('data-id'));
+    });
+  });
+
+  // ana sayfa: ders arama (başlık + konu anahtarları)
+  var da = document.getElementById('dersAra');
+  if (da) {
+    var trk = function (s) { return String(s).replace(/İ/g, 'i').replace(/I/g, 'ı').toLowerCase().normalize('NFC'); };
+    var sonuc = document.getElementById('araSonuc');
+    da.addEventListener('input', function () {
+      var q = trk(da.value.trim()), n = 0;
+      document.querySelectorAll('.modul').forEach(function (m) {
+        var g = 0;
+        m.querySelectorAll('li[data-d]').forEach(function (li) { var ok = !q || trk(li.textContent + ' ' + (li.getAttribute('data-k') || '')).indexOf(q) > -1; li.classList.toggle('ara-gizli', !ok); if (ok) g++; });
+        m.classList.toggle('ara-gizli', !!q && !g); n += g;
+      });
+      var ru = window.AKD_DIL === 'ru';
+      sonuc.textContent = q ? (n ? (ru ? 'Найдено уроков: ' + n : n + ' ders bulundu') : (ru ? 'Ничего не найдено. Попробуй другое слово или загляни в словарь.' : 'Ders bulunamadı. Başka bir kelime dene ya da sözlüğe bak.')) : '';
+    });
+  }
+
+  // mezunlar duvarı
+  var duvar = document.getElementById('mezunDuvar');
+  if (duvar) {
+    fetch('/assets/mezunlar.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : { mezunlar: [] }; }).catch(function () { return { mezunlar: [] }; }).then(function (v) {
+      var L = (v && v.mezunlar) || [], bos = document.getElementById('mezunBos'), say = document.getElementById('mezunSay');
+      if (!L.length) { bos.hidden = false; return; }
+      if (say) { say.textContent = L.length; document.getElementById('mezunSayK').hidden = false; }
+      L.slice().reverse().forEach(function (m, i) {
+        var d = document.createElement('div'); d.className = 'mz-kisi'; d.style.setProperty('--g', (i % 4));
+        var b = document.createElement('b'); b.textContent = String(m.ad || '').slice(0, 32);
+        var s = document.createElement('span'); s.textContent = [m.tarih, m.not].filter(Boolean).join(' · ').slice(0, 60);
+        var h = document.createElement('i'); h.textContent = (String(m.ad || '?').trim().charAt(0) || '?').toLocaleUpperCase('tr');
+        d.appendChild(h); d.appendChild(b); d.appendChild(s); duvar.appendChild(d);
+      });
+    });
   }
 
   // tanıtım videosu: sessiz başlar, düğmeyle ses açılır
