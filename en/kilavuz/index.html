@@ -13,10 +13,34 @@
 <link rel="alternate" hreflang="x-default" href="https://vibekafasi.github.io/kilavuz/">
 <meta name="description" content="KAFA ASİSTAN user guide: 5-step setup, every command, the panel, hand gestures, facial expressions and troubleshooting.">
 <meta property="og:title" content="KAFA ASİSTAN User Guide">
-<meta property="og:image" content="https://vibekafasi.github.io/assets/og.jpg">
+<meta property="og:image" content="https://vibekafasi.github.io/assets/og/kilavuz-en.jpg">
 <meta name="theme-color" content="#111126">
-<link rel="icon" href="/assets/logo-256.webp">
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<!--vk:bas: bakim/duzelt.py yönetir, elle değiştirme-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://vibekafasi.goatcounter.com; font-src 'self'; connect-src 'self' https://vibekafasi.goatcounter.com; media-src 'self' blob:; worker-src 'self'; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
+<link rel="preload" href="/assets/yazi/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/yazi/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/yazi/yazi.css">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/assets/ikon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/ikon/apple-touch-icon.png">
+<link rel="manifest" href="/en/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Vibe Kafası"><meta name="mobile-web-app-capable" content="yes">
+<meta property="og:description" content="KAFA ASİSTAN user guide: 5-step setup, every command, the panel, hand gestures, facial expressions and troubleshooting.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vibe Kafası">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KAFA ASİSTAN User Guide">
+<meta name="twitter:description" content="KAFA ASİSTAN user guide: 5-step setup, every command, the panel, hand gestures, facial expressions and troubleshooting.">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KAFA ASİSTAN User Guide">
+<meta name="twitter:image" content="https://vibekafasi.github.io/assets/og/kilavuz-en.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","inLanguage":"en","mainEntity":[{"@type":"Question","name":"I can't find \"Upload skill\"","acceptedAnswer":{"@type":"Answer","text":"In the Settings window, click Skills in the left menu, then + Add → Upload skill in the top right. If you don't see it, first turn on the Create and edit files switch from Section 1, Step 2."}},{"@type":"Question","name":"Upload gives an error","acceptedAnswer":{"@type":"Answer","text":"The file must be a zip. If you unzipped it, right-click the kafa-asistan folder inside, choose \"Compress\" and upload the new zip. Renaming the file is fine."}},{"@type":"Question","name":"I typed \"Kafa kur\" but it answered like regular Claude","acceptedAnswer":{"@type":"Answer","text":"On the Skills page, check that the kafa-asistan switch is blue. Then open a new chat and type again: Kafa kur."}},{"@type":"Question","name":"It doesn't recognize me in a new chat","acceptedAnswer":{"@type":"Answer","text":"Paste the KAFA CARD you got at the end of setup into Settings → Your Claude → the \"Instructions\" box (older menus: Account → \"Instructions for Claude\"). Starting your message with Kafa, also helps."}},{"@type":"Question","name":"The panel link doesn't show up","acceptedAnswer":{"@type":"Answer","text":"For the panel link, Create and edit files must be on (Section 1, Step 2). If it is, type again: Kafa, open my panel."}},{"@type":"Question","name":"The camera won't turn on","acceptedAnswer":{"@type":"Answer","text":"When your browser asks for camera access, click Allow. If you blocked it before, turn the camera on from the lock icon in the address bar. If another app (like Zoom) is using the camera, close it. The camera doesn't work inside Claude's chat window; open the panel from the link."}},{"@type":"Question","name":"The mic keeps asking for permission","acceptedAnswer":{"@type":"Answer","text":"If you opened the panel from a file on your computer, the browser won't remember permission. Open the panel from the web link; it only asks once."}},{"@type":"Question","name":"Hand or face gestures barely work","acceptedAnswer":{"@type":"Answer","text":"Make sure your face and hand are well lit and sit 50–80 cm (about 2–3 ft) from the camera. Tap Repeat tutorial in the camera box. For expressions, look straight ahead for 2 seconds so KAFA re-learns your face."}}]}</script>
+<link rel="stylesheet" href="/assets/vk-ek.css">
+<script src="/assets/vk-ek.js" defer></script>
+<script type="speculationrules">{"prerender":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/kafa/*"}},{"not":{"href_matches":"/ru/kafa/*"}},{"not":{"href_matches":"/en/kafa/*"}},{"not":{"href_matches":"/*.pdf"}},{"not":{"href_matches":"/*.mp4"}},{"not":{"selector_matches":"[target=_blank], [download], [data-vk-yok-on]"}}]},"eagerness":"moderate"}]}</script>
+<!--/vk:bas-->
 <style>
 :root{--bg:#0b0b1c;--kart:rgba(22,20,52,.7);--cizgi:rgba(255,255,255,.09);--mor:#A34DF5;--or:#F49A46;--tq:#28D5D7;--yaz:#fff;--soluk:#A9A6CF;--sonuk:#6E6B98;color-scheme:dark}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -81,7 +105,7 @@ code,.kod{font-family:"JetBrains Mono",monospace;font-size:.88em;background:rgba
 /* komut tablosu */
 .komutlar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:24px}
 .kk{padding:20px 22px;border-radius:20px;background:var(--kart);border:1px solid var(--cizgi);min-width:0}
-.kk h4{font-family:Unbounded,sans-serif;font-size:15px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
+.kk h3,.kk h4{font-family:Unbounded,sans-serif;font-size:15px;margin-bottom:6px;display:flex;gap:8px;align-items:center}
 .kk p{color:var(--soluk);font-size:14px;margin-bottom:10px}
 .kk ul{list-style:none;display:grid;gap:7px}
 .kk li{font-size:14px;color:var(--soluk)}.kk li code{white-space:normal}
@@ -120,7 +144,7 @@ footer{padding-block:30px 46px;color:var(--sonuk);font-size:13.5px;border-top:1p
 <body>
 <header class="vk-nav" data-vk-nav>
  <div class="vk-nav-ic">
-  <a class="vk-marka" href="/en/" aria-label="Vibe Kafası home"><img src="/assets/logo-256.webp" alt="" width="40" height="40"><span class="vk-yazi"><span class="vk-ad"><b>VIBE</b> <i>KAFASI</i></span><small>Code, Create, Learn, Have fun!</small></span></a>
+  <a class="vk-marka" href="/en/"><img src="/assets/ikon/logo-80.webp" alt="" width="40" height="40"><span class="vk-yazi"><span class="vk-ad"><b>VIBE</b> <i>KAFASI</i></span><small>Code, Create, Learn, Have fun!</small></span></a>
   <nav class="vk-linkler" aria-label="Main menu"><span class="vk-isik" aria-hidden="true"></span><a href="/en/akademi/" data-yol="/en/akademi/">Academy<span class=vk-yeni>NEW</span></a><a href="/en/akademi/videolar/" data-yol="/en/akademi/videolar/">Videos</a><a href="/en/#araclar" data-yol="/en/#araclar">Tools</a><a href="/en/akademi/sozluk/" data-yol="/en/akademi/sozluk/">Glossary</a><a href="/en/akademi/mezuniyet/" data-yol="/en/akademi/mezuniyet/">Graduation</a></nav>
   <div class="vk-sag"><div class="vk-dil" role="group" aria-label="Dil / Язык / Language"><a href="/kilavuz/" hreflang="tr" lang="tr">TR</a><a href="/ru/kilavuz/" hreflang="ru" lang="ru">RU</a><span aria-current="true">EN</span></div><a class="vk-cta" href="https://t.me/vibekafasi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3Z"/></svg>Telegram</a><button type="button" class="vk-menu-dug" aria-expanded="false" aria-controls="vkMobil" aria-label="Open menu"><i></i><i></i><i></i></button></div>
  </div>
@@ -162,28 +186,28 @@ footer{padding-block:30px 46px;color:var(--sonuk);font-size:13.5px;border-top:1p
     <p>For KAFA to work, one switch in Claude needs to be on.</p>
     <div class="yol"><span>claude.ai</span><i>→</i><span>your name, bottom left</span><i>→</i><span>Settings</span><i>→</i><span>Capabilities</span></div>
     <p>Scroll down a bit. The <b>"Create and edit files"</b> switch (older name: <b>"Code execution and file creation"</b>) should be on. Below it, it says it's required for Skills.</p>
-    <figure class="ekran"><img src="/kilavuz/img/kod_calistir.jpg" alt="The file creation switch on the Capabilities page" loading="lazy"><figcaption>1 "Capabilities" → 2 the "Run code in the cloud" switch is blue.</figcaption></figure>
+    <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/kod_calistir-480.avif 480w, /kilavuz/img/kod_calistir-960.avif 960w, /kilavuz/img/kod_calistir.avif 1692w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/kod_calistir-480.webp 480w, /kilavuz/img/kod_calistir-960.webp 960w, /kilavuz/img/kod_calistir.webp 1692w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/kod_calistir.jpg" alt="The file creation switch on the Capabilities page" width="1692" height="1290" loading="lazy" decoding="async"></picture><figcaption>1 "Capabilities" → 2 the "Run code in the cloud" switch is blue.</figcaption></figure>
   </div></div>
 
   <div class="adim"><div class="no">3</div><div>
     <h3>On the Skills page, "Upload skill"</h3>
     <div class="yol"><span>Settings</span><i>→</i><span>Skills</span><i>→</i><span>+ Add</span><i>→</i><span>Upload skill</span></div>
-    <figure class="ekran"><img src="/kilavuz/img/skills_ekle.jpg" alt="Skills, Add and Upload skill" loading="lazy"><figcaption>1 Skills → 2 "+ Add" → 3 "Upload skill".</figcaption></figure>
+    <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/skills_ekle-480.avif 480w, /kilavuz/img/skills_ekle-960.avif 960w, /kilavuz/img/skills_ekle.avif 1912w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/skills_ekle-480.webp 480w, /kilavuz/img/skills_ekle-960.webp 960w, /kilavuz/img/skills_ekle.webp 1912w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/skills_ekle.jpg" alt="Skills, Add and Upload skill" width="1912" height="1492" loading="lazy" decoding="async"></picture><figcaption>1 Skills → 2 "+ Add" → 3 "Upload skill".</figcaption></figure>
   </div></div>
 
   <div class="adim"><div class="no">4</div><div>
     <h3>Drop the zip, hit "Upload"</h3>
     <p>Drag the file into the gray box (or click the box and pick it). Then hit <b>Upload</b>. Claude runs a quick safety scan.</p>
     <div class="ikili">
-      <figure class="ekran"><img src="/kilavuz/img/surukle.jpg" alt="File drop area" loading="lazy"><figcaption>Drop the zip in this box.</figcaption></figure>
-      <figure class="ekran"><img src="/kilavuz/img/yukle.jpg" alt="Upload button" loading="lazy"><figcaption>File shows up → "Upload".</figcaption></figure>
+      <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/surukle-480.avif 480w, /kilavuz/img/surukle-960.avif 960w, /kilavuz/img/surukle.avif 1908w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/surukle-480.webp 480w, /kilavuz/img/surukle-960.webp 960w, /kilavuz/img/surukle.webp 1908w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/surukle.jpg" alt="File drop area" width="1908" height="1484" loading="lazy" decoding="async"></picture><figcaption>Drop the zip in this box.</figcaption></figure>
+      <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/yukle-480.avif 480w, /kilavuz/img/yukle-960.avif 960w, /kilavuz/img/yukle.avif 1906w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/yukle-480.webp 480w, /kilavuz/img/yukle-960.webp 960w, /kilavuz/img/yukle.webp 1906w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/yukle.jpg" alt="Upload button" width="1906" height="1492" loading="lazy" decoding="async"></picture><figcaption>File shows up → "Upload".</figcaption></figure>
     </div>
   </div></div>
 
   <div class="adim"><div class="no">5</div><div>
     <h3>Check that it's on</h3>
     <p>The <b>kafa-asistan</b> page opens. The switch in the top right should be <b>blue</b>. That's it, setup is done! If you like, start right away with <b>Try in chat</b> next to it.</p>
-    <figure class="ekran"><img src="/kilavuz/img/acik.jpg" alt="kafa-asistan turned on" loading="lazy"><figcaption>Blue switch = KAFA is on.</figcaption></figure>
+    <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/acik-480.avif 480w, /kilavuz/img/acik-960.avif 960w, /kilavuz/img/acik.avif 1698w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/acik-480.webp 480w, /kilavuz/img/acik-960.webp 960w, /kilavuz/img/acik.webp 1698w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/acik.jpg" alt="kafa-asistan turned on" width="1698" height="1324" loading="lazy" decoding="async"></picture><figcaption>Blue switch = KAFA is on.</figcaption></figure>
   </div></div>
 </section>
 
@@ -200,23 +224,23 @@ I'm Ayse. I sell homemade cookies. My goal: 100 orders a month.
 Talk to me warmly and briefly. Be honest.</pre></div>
   </div>
   <div class="ipucu">⭐ <b>Paste the KAFA CARD once</b> into Settings → <b>Your Claude</b> → the <b>"Instructions"</b> box (older menus: Account → "Instructions for Claude"). That way it recognizes you in every new chat and in voice mode.</div>
-  <figure class="ekran"><img src="/kilavuz/img/talimatlar.jpg" alt="The Instructions box in Settings" loading="lazy"><figcaption>1 "Account" → 2 paste the KAFA CARD into the "Instructions for Claude" box.</figcaption></figure>
+  <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/talimatlar-480.avif 480w, /kilavuz/img/talimatlar-960.avif 960w, /kilavuz/img/talimatlar.avif 1700w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/talimatlar-480.webp 480w, /kilavuz/img/talimatlar-960.webp 960w, /kilavuz/img/talimatlar.webp 1700w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/talimatlar.jpg" alt="The Instructions box in Settings" width="1700" height="860" loading="lazy" decoding="async"></picture><figcaption>1 "Account" → 2 paste the KAFA CARD into the "Instructions for Claude" box.</figcaption></figure>
 </section>
 
 <section id="komutlar">
   <div class="bno">SECTION 3</div><h2>What do I type every day?</h2>
   <p class="bp">No commands to memorize, just write like you normally talk. The ones below are only examples. If you forget, type <code>What can you do?</code></p>
   <div class="komutlar">
-    <div class="kk"><h4>☀️ Day</h4><p>Morning plan and evening wrap-up.</p><ul><li><code>Good morning</code> → top 3 tasks for the day, what's pending</li><li><code>Close the day</code> → done, left, first thing tomorrow</li></ul></div>
-    <div class="kk"><h4>✅ To-dos</h4><p>Understands dates on its own ("Friday", "tomorrow").</p><ul><li><code>add: call the shipping company, Friday</code></li><li><code>done: shipping</code> · <code>what's left?</code></li></ul></div>
-    <div class="kk"><h4>📝 Notes and memory</h4><p>Never forgets what you said.</p><ul><li><code>note: flour 25 kg 900 lira</code></li><li><code>how much was the flour again?</code></li></ul></div>
-    <div class="kk"><h4>💰 Money log</h4><p>Adds up the totals for you.</p><ul><li><code>bought flour for 300 lira</code> · <code>Zeynep paid 1,200</code></li><li><code>What did I spend this month?</code> · <code>Ahmet owes 2,000</code></li></ul></div>
-    <div class="kk"><h4>👥 Customers</h4><p>Tracks who to get back to and when.</p><ul><li><code>Selin asked for a sample, I'll call tomorrow</code></li><li><code>Who do I need to get back to?</code></li></ul></div>
-    <div class="kk"><h4>📸 Log from a photo</h4><p>Send a receipt, invoice or screenshot.</p><ul><li>Shows what it read and <b style="color:#fff">never saves without asking</b></li></ul></div>
-    <div class="kk"><h4>🧠 Summaries and brain dumps</h4><p>Sorts through long text.</p><ul><li>Paste meeting notes + <code>summarize</code></li><li><code>Brain dump: …</code></li></ul></div>
-    <div class="kk"><h4>🎯 Goals and plans</h4><p>Breaks a big goal into small steps.</p><ul><li><code>Break my goal into steps</code></li><li><code>This week's posting plan</code></li></ul></div>
-    <div class="kk"><h4>🔁 Habits and decisions</h4><p>Counts your streak, remembers your decisions.</p><ul><li><code>Track a 20-minute walk every day</code> · <code>walked</code></li><li><code>I made this decision: …</code></li></ul></div>
-    <div class="kk"><h4>✍️ Writing and advice</h4><p>Writes like you, talks straight.</p><ul><li><code>Write a reply to Zeynep</code> (it won't send it, you do)</li><li><code>What do you think of this idea?</code> · <code>How was my week?</code></li></ul></div>
+    <div class="kk"><h3>☀️ Day</h3><p>Morning plan and evening wrap-up.</p><ul><li><code>Good morning</code> → top 3 tasks for the day, what's pending</li><li><code>Close the day</code> → done, left, first thing tomorrow</li></ul></div>
+    <div class="kk"><h3>✅ To-dos</h3><p>Understands dates on its own ("Friday", "tomorrow").</p><ul><li><code>add: call the shipping company, Friday</code></li><li><code>done: shipping</code> · <code>what's left?</code></li></ul></div>
+    <div class="kk"><h3>📝 Notes and memory</h3><p>Never forgets what you said.</p><ul><li><code>note: flour 25 kg 900 lira</code></li><li><code>how much was the flour again?</code></li></ul></div>
+    <div class="kk"><h3>💰 Money log</h3><p>Adds up the totals for you.</p><ul><li><code>bought flour for 300 lira</code> · <code>Zeynep paid 1,200</code></li><li><code>What did I spend this month?</code> · <code>Ahmet owes 2,000</code></li></ul></div>
+    <div class="kk"><h3>👥 Customers</h3><p>Tracks who to get back to and when.</p><ul><li><code>Selin asked for a sample, I'll call tomorrow</code></li><li><code>Who do I need to get back to?</code></li></ul></div>
+    <div class="kk"><h3>📸 Log from a photo</h3><p>Send a receipt, invoice or screenshot.</p><ul><li>Shows what it read and <b style="color:#fff">never saves without asking</b></li></ul></div>
+    <div class="kk"><h3>🧠 Summaries and brain dumps</h3><p>Sorts through long text.</p><ul><li>Paste meeting notes + <code>summarize</code></li><li><code>Brain dump: …</code></li></ul></div>
+    <div class="kk"><h3>🎯 Goals and plans</h3><p>Breaks a big goal into small steps.</p><ul><li><code>Break my goal into steps</code></li><li><code>This week's posting plan</code></li></ul></div>
+    <div class="kk"><h3>🔁 Habits and decisions</h3><p>Counts your streak, remembers your decisions.</p><ul><li><code>Track a 20-minute walk every day</code> · <code>walked</code></li><li><code>I made this decision: …</code></li></ul></div>
+    <div class="kk"><h3>✍️ Writing and advice</h3><p>Writes like you, talks straight.</p><ul><li><code>Write a reply to Zeynep</code> (it won't send it, you do)</li><li><code>What do you think of this idea?</code> · <code>How was my week?</code></li></ul></div>
   </div>
   <h3>Example: a receipt photo</h3>
   <div class="sohbet">
@@ -231,14 +255,14 @@ Talk to me warmly and briefly. Be honest.</pre></div>
 <section id="panel">
   <div class="bno">SECTION 4</div><h2>The panel: your personal screen</h2>
   <p class="bp">The panel is KAFA's animated, Jarvis-style screen. Type <code>Kafa, open my panel</code> to Claude. You get a personal link; when you open it, the panel shows <b style="color:#fff">your</b> tasks, goal, projects and notes. Works on both phone and computer.</p>
-  <figure class="ekran" style="margin-top:20px"><img src="/kilavuz/img/panel_masa.jpg" alt="KAFA panel on a computer" loading="lazy"><figcaption>The panel on a computer (example user: Ayse).</figcaption></figure>
+  <figure class="ekran" style="margin-top:20px"><picture><source type="image/avif" srcset="/kilavuz/img/panel_masa-480.avif 480w, /kilavuz/img/panel_masa-960.avif 960w, /kilavuz/img/panel_masa.avif 1440w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/panel_masa-480.webp 480w, /kilavuz/img/panel_masa-960.webp 960w, /kilavuz/img/panel_masa.webp 1440w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/panel_masa.jpg" alt="KAFA panel on a computer" width="1440" height="900" loading="lazy" decoding="async"></picture><figcaption>The panel on a computer (example user: Ayse).</figcaption></figure>
   <div class="ikili" style="margin-top:14px;align-items:start">
-    <figure class="ekran"><img src="/kilavuz/img/panel_yaz.jpg" alt="Write to KAFA box" loading="lazy"><figcaption>💬 Write to KAFA: "add / note / done / good morning" happen right in the panel; questions open in Claude.</figcaption></figure>
-    <figure class="ekran" style="max-width:300px;justify-self:center"><img src="/kilavuz/img/panel_tel.jpg" alt="Panel on a phone" loading="lazy"><figcaption>The panel on a phone.</figcaption></figure>
+    <figure class="ekran"><picture><source type="image/avif" srcset="/kilavuz/img/panel_yaz-480.avif 480w, /kilavuz/img/panel_yaz.avif 840w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/panel_yaz-480.webp 480w, /kilavuz/img/panel_yaz.webp 840w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/panel_yaz.jpg" alt="Write to KAFA box" width="840" height="340" loading="lazy" decoding="async"></picture><figcaption>💬 Write to KAFA: "add / note / done / good morning" happen right in the panel; questions open in Claude.</figcaption></figure>
+    <figure class="ekran" style="max-width:300px;justify-self:center"><picture><source type="image/avif" srcset="/kilavuz/img/panel_tel-480.avif 480w, /kilavuz/img/panel_tel-960.avif 960w, /kilavuz/img/panel_tel.avif 1170w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><source type="image/webp" srcset="/kilavuz/img/panel_tel-480.webp 480w, /kilavuz/img/panel_tel-960.webp 960w, /kilavuz/img/panel_tel.webp 1170w" sizes="(max-width: 760px) calc(100vw - 40px), 720px"><img src="/kilavuz/img/panel_tel.jpg" alt="Panel on a phone" width="1170" height="1992" loading="lazy" decoding="async"></picture><figcaption>The panel on a phone.</figcaption></figure>
   </div>
   <h3>Panel buttons</h3>
   <div class="sar"><table class="tablo">
-    <tr><th></th><th>BUTTON</th><th>WHAT IT DOES</th></tr>
+    <tr><td></td><th>BUTTON</th><th>WHAT IT DOES</th></tr>
     <tr><td>🎙️</td><td><b>Talk</b></td><td>Press and say: "add: …", "note: …", "good morning", "done".</td></tr>
     <tr><td>➕</td><td><b>Add task / Note</b></td><td>Opens the text box with "add:" or "note:" already filled in.</td></tr>
     <tr><td>📅</td><td><b>My week</b></td><td>Reads your day out loud.</td></tr>
@@ -253,7 +277,7 @@ Talk to me warmly and briefly. Be honest.</pre></div>
   <p class="bp">In the panel, tap <b style="color:#fff">📷 Turn on camera</b> and allow access. The first time, a short tutorial pops up; then look straight ahead for 2 seconds so KAFA learns your face. The video never leaves your computer; everything runs in your browser.</p>
   <h3>Hand</h3>
   <div class="sar"><table class="tablo">
-    <tr><th></th><th>GESTURE</th><th>WHAT HAPPENS</th></tr>
+    <tr><td></td><th>GESTURE</th><th>WHAT HAPPENS</th></tr>
     <tr><td>☝️</td><td><b>Move your index finger</b></td><td>It becomes a cursor on screen.</td></tr>
     <tr><td>🤏</td><td><b>Pinch thumb + index finger</b></td><td>Clicks. Over a card, it grabs and moves it; flick it fast and it closes.</td></tr>
     <tr><td>👋</td><td><b>Wave / show an open palm</b></td><td>Wakes it up and brings closed cards back.</td></tr>
@@ -264,7 +288,7 @@ Talk to me warmly and briefly. Be honest.</pre></div>
   </table></div>
   <h3>Face</h3>
   <div class="sar"><table class="tablo">
-    <tr><th></th><th>EXPRESSION</th><th>WHAT HAPPENS</th></tr>
+    <tr><td></td><th>EXPRESSION</th><th>WHAT HAPPENS</th></tr>
     <tr><td>😊</td><td><b>Smile</b></td><td>The core lights up and KAFA says something to you.</td></tr>
     <tr><td>🙂‍↕️</td><td><b>Nod "yes"</b></td><td>Asks "Is the first task done?"; nod again and it marks it done.</td></tr>
     <tr><td>🙂‍↔️</td><td><b>Shake your head "no"</b></td><td>Cancels the question and closes open boxes.</td></tr>

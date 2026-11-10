@@ -1,6 +1,38 @@
 <!doctype html>
 <html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KAFA Paneli</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<!--vk:bas: bakim/duzelt.py yönetir, elle değiştirme-->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net https://gc.zgo.at blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com https://vibekafasi.goatcounter.com data: blob:; media-src 'self' blob: mediastream:; worker-src 'self' blob:; manifest-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
+<link rel="preload" href="/assets/yazi/orbitron-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/yazi/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/yazi/yazi.css">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/assets/ikon/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/assets/ikon/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="Vibe Kafası"><meta name="mobile-web-app-capable" content="yes">
+<link rel="canonical" href="https://vibekafasi.github.io/kafa/">
+<link rel="alternate" hreflang="tr" href="https://vibekafasi.github.io/kafa/">
+<link rel="alternate" hreflang="ru" href="https://vibekafasi.github.io/ru/kafa/">
+<link rel="alternate" hreflang="en" href="https://vibekafasi.github.io/en/kafa/">
+<link rel="alternate" hreflang="x-default" href="https://vibekafasi.github.io/kafa/">
+<meta name="description" content="KAFA ASİSTAN örnek paneli: günün, görevlerin, notların ve hedeflerin tek ekranda. Kamerayla elinle, mikrofonla sesinle yönet.">
+<meta property="og:title" content="KAFA Paneli">
+<meta property="og:description" content="KAFA ASİSTAN örnek paneli: günün, görevlerin, notların ve hedeflerin tek ekranda. Kamerayla elinle, mikrofonla sesinle yönet.">
+<meta property="og:url" content="https://vibekafasi.github.io/kafa/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Vibe Kafası">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KAFA Paneli">
+<meta name="twitter:description" content="KAFA ASİSTAN örnek paneli: günün, görevlerin, notların ve hedeflerin tek ekranda. Kamerayla elinle, mikrofonla sesinle yönet.">
+<meta property="og:image" content="https://vibekafasi.github.io/assets/og/kafa-tr.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="KAFA Paneli">
+<meta name="twitter:image" content="https://vibekafasi.github.io/assets/og/kafa-tr.jpg">
+<script type="speculationrules">{"prerender":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/kafa/*"}},{"not":{"href_matches":"/ru/kafa/*"}},{"not":{"href_matches":"/en/kafa/*"}},{"not":{"href_matches":"/*.pdf"}},{"not":{"href_matches":"/*.mp4"}},{"not":{"selector_matches":"[target=_blank], [download], [data-vk-yok-on]"}}]},"eagerness":"moderate"}]}</script>
+<!--/vk:bas-->
 <style>
 :root{--bg:#07071a;--kart:rgba(16,16,44,.78);--cizgi:#2a2a64;--tq:#28D5D7;--or:#F49A46;--mor:#A34DF5;--sari:#FFD60A;--yaz:#EDEBFF;--soluk:#8E8BB8;--yesil:#3DBE6A;--kir:#E8402E}
 *{box-sizing:border-box;margin:0}
@@ -238,9 +270,9 @@ body.ellerSerbest #mimikOlcer{display:none}
 @media (max-width:760px){#sohbet{bottom:84px}}
 body.sohbetAcik #balon{bottom:200px!important}
 </style></head><body>
-<canvas id="bg"></canvas>
-<canvas id="holo"></canvas><div id="havaImlec"></div>
-<div id="sahne">
+<canvas id="bg" aria-hidden="true"></canvas>
+<canvas id="holo" aria-hidden="true"></canvas><div id="havaImlec" aria-hidden="true"></div>
+<div id="sahne" role="main">
   <div class="izgara"></div>
   <div class="flas" id="flas"></div>
   <div id="acilis"><div class="boot-halka"></div><div class="boot-yuzde" id="yuzde">0%</div><div class="boot-log" id="log"></div></div>
