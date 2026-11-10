@@ -1,0 +1,102 @@
+{
+ "id": "/en/",
+ "name": "Vibe Kafası",
+ "short_name": "Vibe Kafası",
+ "description": "Free AI tools you can use without coding, plus a Vibe Coding Academy from scratch.",
+ "lang": "en",
+ "dir": "ltr",
+ "start_url": "/en/",
+ "scope": "/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "orientation": "any",
+ "background_color": "#111126",
+ "theme_color": "#111126",
+ "categories": [
+  "education",
+  "productivity"
+ ],
+ "icons": [
+  {
+   "src": "/assets/ikon/ikon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/ikon/ikon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/ikon/maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/assets/ikon/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Academy",
+   "short_name": "Academy",
+   "description": "Free lessons",
+   "url": "/en/akademi/",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "Glossary",
+   "short_name": "Glossary",
+   "description": "Software and AI terms",
+   "url": "/en/akademi/sozluk/",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "Videos",
+   "short_name": "Videos",
+   "description": "Short tutorial videos",
+   "url": "/en/akademi/videolar/",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "Tools",
+   "short_name": "Tools",
+   "description": "Free tools",
+   "url": "/en/#araclar",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  }
+ ]
+}

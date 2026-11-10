@@ -1,0 +1,102 @@
+{
+ "id": "/ru/",
+ "name": "Vibe Kafası",
+ "short_name": "Vibe Kafası",
+ "description": "Бесплатные ИИ-инструменты без программирования и академия вайб-кодинга с нуля.",
+ "lang": "ru",
+ "dir": "ltr",
+ "start_url": "/ru/",
+ "scope": "/",
+ "display": "standalone",
+ "display_override": [
+  "window-controls-overlay",
+  "standalone"
+ ],
+ "orientation": "any",
+ "background_color": "#111126",
+ "theme_color": "#111126",
+ "categories": [
+  "education",
+  "productivity"
+ ],
+ "icons": [
+  {
+   "src": "/assets/ikon/ikon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/ikon/ikon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/ikon/maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/assets/ikon/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Академия",
+   "short_name": "Академия",
+   "description": "Бесплатные уроки",
+   "url": "/ru/akademi/",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "Словарь",
+   "short_name": "Словарь",
+   "description": "Термины программирования и ИИ",
+   "url": "/ru/akademi/sozluk/",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "Видео",
+   "short_name": "Видео",
+   "description": "Короткие обучающие видео",
+   "url": "/ru/akademi/videolar/",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  },
+  {
+   "name": "Инструменты",
+   "short_name": "Инструменты",
+   "description": "Бесплатные инструменты",
+   "url": "/ru/#araclar",
+   "icons": [
+    {
+     "src": "/assets/ikon/ikon-192.png",
+     "sizes": "192x192",
+     "type": "image/png"
+    }
+   ]
+  }
+ ]
+}
