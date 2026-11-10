@@ -1,0 +1,70 @@
+name: Kalite kontrolü
+# Her PR'da ve main'e her gönderimde siteyi denetler; her pazartesi bir de dış bağlantıları tarar.
+# GitHub Pages yayınını ASLA durdurmaz: main'de yalnızca rapor verir (kırmızı olsa bile site yayına çıkar).
+# Gizli anahtar (secret) gerekmez.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "41 4 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: kalite-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  denetim:
+    name: HTML, bağlantı, Lighthouse
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    continue-on-error: ${{ github.event_name != 'pull_request' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+      - name: Bakım betikleri güncel mi? (yalnız uyarı)
+        run: |
+          python3 bakim/duzelt.py && python3 bakim/arama_dizini.py
+          if ! git diff --quiet; then
+            echo "::warning::Bazı sayfalar bakim/hepsi.py ile güncellenmemiş (main'de otomatik bakım bunu düzeltir)."
+            git diff --stat | tail -5; git checkout -- .
+          fi
+      - name: Site denetimi (kırık iç bağlantı, çapa, hreflang, JSON-LD, alt metin)
+        run: python3 bakim/denetim.py
+      - name: HTML doğrulama
+        run: npx --yes html-validate@11.21.0 --config .htmlvalidate.json $(git ls-files '*.html')
+      - name: Bağlantılar (site içi, internetsiz ve hızlı)
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: v0.24.2
+          args: --offline --no-progress --include-fragments --index-files index.html --exclude '#gs$' --root-dir "${{ github.workspace }}" './**/*.html'
+          fail: true
+          jobSummary: true
+      - name: Lighthouse (eşikler lighthouserc.json'da)
+        run: npx --yes @lhci/cli@0.16.0 autorun
+      - name: Lighthouse raporlarını sakla
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: lighthouse-raporlari
+          path: .lighthouseci
+          retention-days: 14
+          if-no-files-found: ignore
+
+  dis-baglantilar:
+    name: Dış bağlantılar (haftalık rapor)
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: v0.24.2
+          args: --no-progress --max-concurrency 6 --accept '200..=299,403,429' --exclude '^https://(t\.me|www\.instagram\.com|www\.tiktok\.com|vibekafasi\.goatcounter\.com)' --root-dir "${{ github.workspace }}" './**/*.html'
+          fail: false
+          jobSummary: true

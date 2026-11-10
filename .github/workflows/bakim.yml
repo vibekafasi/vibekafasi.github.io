@@ -1,0 +1,43 @@
+name: Site bakımı (otomatik)
+# main'e sayfa eklenince/değişince: başlık bloklarını, site aramasını, sitemap.xml'i ve modern görselleri günceller,
+# değişiklik varsa tek bir commit atar, sonra değişen sayfaları IndexNow ile Bing/Yandex'e bildirir.
+# Gizli anahtar gerekmez. Değişecek bir şey yoksa hiçbir şey yapmaz.
+on:
+  push:
+    branches: [main]
+    paths: ["**.html", "bakim/**", "kilavuz/img/**", "assets/video/*.jpg"]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: site-bakimi
+  cancel-in-progress: false
+jobs:
+  guncelle:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.13"
+      - run: pip install --quiet "pillow>=12" fonttools brotli
+      - name: Bakım
+        run: python3 bakim/hepsi.py
+      - name: Değişiklik varsa kaydet
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "vibekafasi"
+            git config user.email "vibekafasi@users.noreply.github.com"
+            git add -A
+            git commit -m "Otomatik bakım: arama dizini, sitemap ve sayfa başlıkları güncellendi"
+            git pull --rebase --autostash origin main && git push
+          else
+            echo "Değişiklik yok."
+          fi
+      - name: Arama motorlarına haber ver (IndexNow)
+        continue-on-error: true
+        run: python3 bakim/indexnow.py --fark "${{ github.event.before }}" "${{ github.sha }}"
