@@ -1,0 +1,6 @@
+{
+  "_aciklama": "Arama motoru doğrulama kodları. Search Console / Bing / Yandex'in verdiği meta etiketindeki content=\"...\" değerini tırnak içine yaz, sonra: python3 bakim/hepsi.py (main'de otomatik bakım da ekler). Boş bırakılanlar eklenmez.",
+  "google-site-verification": "",
+  "msvalidate.01": "",
+  "yandex-verification": ""
+}
