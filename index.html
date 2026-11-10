@@ -131,7 +131,7 @@ h2{font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,4
 .sayac{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin:-6px 0 26px;padding:18px 24px;border-radius:20px;background:var(--kart);border:1px solid var(--cizgi)}
 .sy-ana{display:flex;align-items:baseline;gap:12px}.sy-ana b{font-family:Unbounded,sans-serif;font-size:40px;font-weight:800;color:var(--tq);font-variant-numeric:tabular-nums}.sy-ana span{color:var(--soluk);font-size:16px}
 .sy-alt{display:flex;flex-wrap:wrap;gap:8px}.sy-alt span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soluk);border:1px solid var(--cizgi);border-radius:999px;padding:5px 12px}.sy-alt b{color:var(--yaz)}
-.kart.fikir{background:linear-gradient(135deg,rgba(244,154,70,.12),rgba(163,77,245,.12));border-style:dashed;border-color:rgba(244,154,70,.35)}
+.kart.fikir{grid-column:1/-1;background:linear-gradient(135deg,rgba(244,154,70,.12),rgba(163,77,245,.12));border-style:dashed;border-color:rgba(244,154,70,.35)}
 .yakinda .kilit{position:absolute;top:22px;right:22px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;color:var(--sonuk);border:1px solid var(--cizgi);border-radius:999px;padding:4px 10px}
 
 /* mini panel önizlemesi (KAFA kartı) */
@@ -324,7 +324,7 @@ footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{ba
   </div>
 </section>
 
-<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span></div></div>
+<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>STÜDYO</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>STÜDYO</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span></div></div>
 
 <section class="akd-bant">
   <div class="kap">
@@ -370,6 +370,15 @@ footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{ba
         <h3>ÇİZGİ FİLM REHBERİ</h3>
         <p>Ücretsiz araçlarla 5 adımda ilk yapay zekâ çizgi filmin. Hazır komutlar ve sık yapılan 5 hata.</p>
         <div class="alt-sira"><a class="dug cam kucuk" href="https://t.me/vibekafasibot?start=cizgifilm" target="_blank" rel="noopener">Telegram'dan al</a></div>
+      </article>
+
+      <article class="kart gor" data-renk="or">
+        <div class="rozetler"><span class="rz yeni">Yeni</span><span class="rz ucr">Ücretsiz</span></div>
+        <div class="ikon i-or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5h17V19a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="m3.2 10.3-.6-3a2 2 0 0 1 1.6-2.3l12.7-2.5a2 2 0 0 1 2.3 1.6l.6 3z"/><path d="m7.5 4.6 3 4.2M12.6 3.6l3 4.2"/></svg></div>
+        <h3>STÜDYO</h3>
+        <p>17 kişilik çizgi film stüdyosu. Tek bir çizgi film fikrini, kısa dikey çizgi filmin eksiksiz yapım dosyasına çevirir.</p>
+        <ul><li>Yapımcıdan senariste, yönetmenden montajcıya 17 yapay zekâ rolü</li><li>Senaryo, hikâye panosu, ses, altyazı ve kapak tek dosyada</li><li>Claude'a yaz: "/vibestudio fikrin"</li></ul>
+        <div class="alt-sira"><a class="dug cam kucuk" href="https://t.me/vibekafasibot?start=studyo" target="_blank" rel="noopener">Telegram'dan al</a></div>
       </article>
 
       <article class="kart yakinda gor"><span class="kilit">YAKINDA</span>
@@ -458,7 +467,7 @@ const go=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.gor').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.bento,.adimlar,.guven')?(i%3)*.08:0)+'s';go.observe(el)});
 // sayaç: yalnız gerçek sayılar (assets/sayilar.json, bot istatistiğinden). Dosya yoksa sayaç görünmez.
 fetch('assets/sayilar.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
-  if(!d||!d.araclar)return;const ad={mahkeme:'Mahkeme',cizgifilm:'Çizgi Film',kafa:'KAFA Asistan'};
+  if(!d||!d.araclar)return;const ad={mahkeme:'Mahkeme',cizgifilm:'Çizgi Film',kafa:'KAFA Asistan',studyo:'Stüdyo'};
   const top=Object.values(d.araclar).reduce((a,b)=>a+(+b||0),0);if(top<1)return;
   const el=document.getElementById('sayac'),n=document.getElementById('sy-top');el.hidden=false;
   document.getElementById('sy-alt').innerHTML=Object.entries(d.araclar).filter(([k,v])=>v>0).map(([k,v])=>`<span>${ad[k]||k} <b>${(+v).toLocaleString('tr-TR')}</b></span>`).join('');
