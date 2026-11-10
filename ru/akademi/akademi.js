@@ -438,6 +438,6 @@ window.AKD_SOZ={"yapay-zeka": ["Искусственный интеллект", 
   var tv = document.getElementById('tanVid'), sd = document.getElementById('sesDug');
   if (tv && sd) {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) { tv.removeAttribute('autoplay'); tv.pause(); }
-    sd.addEventListener('click', function () { if (tv.muted) { tv.muted = false; tv.currentTime = 0; tv.play().catch(function () {}); sd.textContent = '🔇 Sesi kapat'; } else { tv.muted = true; sd.textContent = '🔊 Sesi aç'; } });
+    sd.addEventListener('click', function () { if (tv.muted) { tv.muted = false; tv.currentTime = 0; tv.play().catch(function () {}); sd.textContent = '🔇 Выключить звук'; } else { tv.muted = true; sd.textContent = '🔊 Включить звук'; } });
   }
 })();
