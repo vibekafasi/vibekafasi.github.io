@@ -7,7 +7,7 @@
     var yol = location.pathname.replace(/index\.html$/, '');
     nav.querySelectorAll('a[data-yol]').forEach(function (a) {
       var y = a.getAttribute('data-yol');
-      var kok = /^\/(ru\/)?akademi\/$/.test(y);
+      var kok = /^\/((ru|en)\/)?akademi\/$/.test(y);
       var akt = kok ? (yol === y || (yol.indexOf(y) === 0 && !/\/akademi\/(sozluk|mezuniyet|videolar|mezunlar)\//.test(yol))) : (y.charAt(1) !== '#' && yol.indexOf(y) === 0);
       if (y === '/akademi/mezuniyet/' && yol.indexOf('/akademi/mezunlar/') === 0) akt = true;
       if (akt) a.setAttribute('aria-current', 'page');
@@ -28,14 +28,24 @@
       addEventListener('resize', function () { git(aktif); });
     }
     // kaydırınca küçül
-    var son = false;
-    function kay() { var k = scrollY > 24; if (k !== son) { son = k; nav.classList.toggle('kucuk', k); requestAnimationFrame(function () { git(aktif); }); } }
+    var son = false, sonY = scrollY, gizli = false;
+    function gizle(g) { if (g === gizli) return; gizli = g; nav.classList.toggle('gizli', g); document.documentElement.classList.toggle('vkn-gizli', g); }
+    function kay() {
+      var y = scrollY, k = y > 24;
+      if (k !== son) { son = k; nav.classList.toggle('kucuk', k); requestAnimationFrame(function () { git(aktif); }); }
+      var kl = null; try { kl = nav.querySelector(':focus-visible'); } catch (e) {}
+      if (nav.classList.contains('vk-acik') || kl) { gizle(false); sonY = y; return; }
+      var d = y - sonY;
+      if (y < 140) gizle(false); else if (d > 8) gizle(true); else if (d < -8) gizle(false);
+      if (Math.abs(d) > 8) sonY = y;
+    }
     addEventListener('scroll', kay, { passive: true }); kay();
     // mobil menü
     var dug = nav.querySelector('.vk-menu-dug'), mob = nav.querySelector('.vk-mobil');
     function ac(a) {
+      if (a) gizle(false);
       nav.classList.toggle('vk-acik', a); document.documentElement.classList.toggle('vk-kilit', a);
-      if (dug) { dug.setAttribute('aria-expanded', a ? 'true' : 'false'); var ru = document.documentElement.lang === 'ru'; dug.setAttribute('aria-label', a ? (ru ? 'Закрыть меню' : 'Menüyü kapat') : (ru ? 'Открыть меню' : 'Menüyü aç')); }
+      if (dug) { dug.setAttribute('aria-expanded', a ? 'true' : 'false'); var lg = document.documentElement.lang; dug.setAttribute('aria-label', a ? ({ ru: 'Закрыть меню', en: 'Close menu' }[lg] || 'Menüyü kapat') : ({ ru: 'Открыть меню', en: 'Open menu' }[lg] || 'Menüyü aç')); }
       if (mob) { mob.setAttribute('aria-hidden', a ? 'false' : 'true'); if (a) { var ilk = mob.querySelector('a'); if (ilk) setTimeout(function () { ilk.focus(); }, 250); } }
     }
     if (dug) dug.addEventListener('click', function () { ac(!nav.classList.contains('vk-acik')); });

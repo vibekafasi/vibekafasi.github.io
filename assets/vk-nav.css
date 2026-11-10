@@ -8,6 +8,11 @@ body{padding-top:var(--vkn-pay)}
 .vk-nav-ic::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;background:conic-gradient(from var(--vkn-aci),rgba(163,77,245,.85),rgba(40,213,215,.6),rgba(244,154,70,.7),rgba(255,255,255,.08) 55%,rgba(163,77,245,.85));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:vkn-don 9s linear infinite;pointer-events:none}
 @keyframes vkn-don{to{--vkn-aci:360deg}}
 .vk-nav.kucuk{--vkn-ust:8px}
+/* aşağı kaydırınca gizlen, yukarı kaydırınca geri gel */
+.vk-nav{transition:padding .35s cubic-bezier(.2,.8,.2,1),transform .4s cubic-bezier(.2,.8,.2,1)}
+.vk-nav.gizli{transform:translateY(calc(-100% - 12px))}
+html{--vkn-yapis:var(--vkn-pay)}
+html.vkn-gizli{--vkn-yapis:calc(env(safe-area-inset-top,0px) + 8px)}
 .vk-nav.kucuk .vk-nav-ic{height:56px;background:rgba(11,11,28,.82);max-width:1040px}
 /* marka */
 .vk-marka{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none}
@@ -70,5 +75,5 @@ html.vk-kilit,html.vk-kilit body{overflow:hidden}
  .vk-nav-ic{padding:0 8px 0 10px;justify-content:space-between}
 }
 @media (max-width:380px){.vk-ad{font-size:14px}.vk-yazi small{font-size:10px}}
-@media (prefers-reduced-motion:reduce){.vk-nav-ic::before,.vk-cta::after,.vk-yeni{animation:none}.vk-nav,.vk-nav-ic,.vk-isik,.vk-mobil,.vk-mobil a.ml{transition:none}}
+@media (prefers-reduced-motion:reduce){.vk-nav.gizli{transition:none}.vk-nav-ic::before,.vk-cta::after,.vk-yeni{animation:none}.vk-nav,.vk-nav-ic,.vk-isik,.vk-mobil,.vk-mobil a.ml{transition:none}}
 html{scroll-padding-top:calc(var(--vkn-pay) + 8px)}

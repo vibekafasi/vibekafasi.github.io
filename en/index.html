@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vibe Kafası — Free AI Tools</title>
+<link rel="canonical" href="https://vibekafasi.github.io/en/">
+<meta property="og:url" content="https://vibekafasi.github.io/en/">
+<meta property="og:locale" content="en_US">
+<link rel="alternate" hreflang="tr" href="https://vibekafasi.github.io/">
+<link rel="alternate" hreflang="ru" href="https://vibekafasi.github.io/ru/">
+<link rel="alternate" hreflang="en" href="https://vibekafasi.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://vibekafasi.github.io/">
+<meta name="description" content="Free AI tools that actually work, no coding needed: KAFA ASİSTAN, MAHKEME and more.">
+<meta property="og:title" content="Vibe Kafası — Free AI Tools">
+<meta property="og:description" content="Code, Create, Learn, Have fun! Free tools you can use without knowing how to code.">
+<meta property="og:image" content="https://vibekafasi.github.io/assets/og.jpg">
+<meta name="theme-color" content="#111126">
+<link rel="icon" href="/assets/logo-256.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#111126;--bg2:#0b0b1c;--kart:rgba(22,20,52,.62);--cizgi:rgba(255,255,255,.08);--mor:#A34DF5;--or:#F49A46;--tq:#28D5D7;--yaz:#FFFFFF;--soluk:#A9A6CF;--sonuk:#6E6B98;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg2);overflow-x:clip}
+.hero{overflow-x:clip}
+body{background:var(--bg2);color:var(--yaz);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.kap{width:min(1180px,100%);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* ---------- arka plan: aurora + ızgara + parçacık ---------- */
+.zemin{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 800px at 70% -10%,#241a5c 0%,transparent 60%),var(--bg2)}
+.aur{position:absolute;border-radius:50%;filter:blur(90px);opacity:.42;will-change:transform}
+.a1{width:620px;height:620px;background:var(--mor);top:-160px;left:-120px;animation:suz1 26s ease-in-out infinite}
+.a2{width:520px;height:520px;background:var(--tq);top:30%;right:-180px;opacity:.22;animation:suz2 32s ease-in-out infinite}
+.a3{width:460px;height:460px;background:var(--or);bottom:-200px;left:30%;opacity:.18;animation:suz1 38s ease-in-out infinite reverse}
+@keyframes suz1{50%{transform:translate(120px,80px) scale(1.15)}}
+@keyframes suz2{50%{transform:translate(-140px,-60px) scale(.9)}}
+.izgara{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(900px 600px at 50% 20%,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(900px 600px at 50% 20%,#000 30%,transparent 75%)}
+#parcacik{position:absolute;inset:0;width:100%;height:100%}
+.gren{position:absolute;inset:0;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- üst menü ---------- */
+.ust{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);background:rgba(11,11,28,.55);border-bottom:1px solid var(--cizgi)}
+.ust .kap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.marka{display:flex;align-items:center;gap:12px;font-family:Unbounded,sans-serif;font-weight:900;letter-spacing:.5px;font-size:17px}
+.marka img{width:38px;height:38px;border-radius:50%;box-shadow:0 0 0 2px rgba(163,77,245,.6),0 0 18px rgba(163,77,245,.5)}
+.marka b{color:var(--tq)}.marka i{font-style:normal;color:var(--or)}
+.menu{display:flex;align-items:center;gap:26px;font-size:14.5px;color:var(--soluk)}
+.menu a:not(.dug){transition:color .2s}.menu a:not(.dug):hover{color:var(--yaz)}
+
+/* ---------- düğmeler ---------- */
+.dug{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;font-weight:700;font-size:15px;transition:transform .25s cubic-bezier(.2,.9,.3,1.3),box-shadow .25s,background .25s;white-space:nowrap;cursor:pointer;border:0;font-family:inherit}
+.dug:hover{transform:translateY(-2px)}
+.dug.ana{background:linear-gradient(135deg,var(--tq),#5be7e9);color:#08081a;box-shadow:0 10px 30px -8px rgba(40,213,215,.6)}
+.dug.ana:hover{box-shadow:0 14px 40px -6px rgba(40,213,215,.8)}
+.dug.cam{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:var(--yaz)}
+.dug.cam:hover{background:rgba(255,255,255,.1)}
+.dug.kucuk{padding:9px 16px;font-size:13.5px}
+.dug svg{width:18px;height:18px;flex:none}
+
+/* ---------- hero ---------- */
+.hero{padding:88px 0 70px}
+.hero .kap{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;gap:40px}
+.etiket{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(163,77,245,.12);border:1px solid rgba(163,77,245,.35);font-size:13px;font-weight:600;color:#d9c2ff;letter-spacing:.3px}
+.etiket span{background:var(--mor);color:#fff;border-radius:999px;padding:2px 9px;font-size:11px;font-weight:800;letter-spacing:1px}
+h1{font-family:Unbounded,sans-serif;font-weight:900;font-size:clamp(38px,6.2vw,74px);line-height:1.02;letter-spacing:-1.5px;margin:22px 0 22px;text-wrap:balance}
+h1 .k{display:inline-block;opacity:0;transform:translateY(30px) rotate(3deg);animation:gel .9s cubic-bezier(.2,.9,.2,1) forwards}
+h1 .r1{color:var(--tq)}h1 .r2{color:var(--or)}h1 .r3{color:var(--mor)}
+h1 .r4{background:linear-gradient(90deg,var(--tq),var(--mor),var(--or),var(--tq));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gel .9s cubic-bezier(.2,.9,.2,1) forwards,akis 6s linear infinite}
+@keyframes gel{to{opacity:1;transform:none}}
+@keyframes akis{to{background-position:300% 0}}
+.alt{font-size:clamp(16px,1.6vw,19px);color:var(--soluk);max-width:540px}
+.alt b{color:var(--yaz);font-weight:600}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.ozet{display:flex;flex-wrap:wrap;gap:22px;margin-top:38px;color:var(--soluk);font-size:14px}
+.ozet div{display:flex;align-items:center;gap:8px}.ozet svg{width:18px;height:18px;color:var(--tq)}
+
+/* hero görsel: yörüngedeki logo */
+.yorunge{position:relative;aspect-ratio:1;width:min(460px,100%);justify-self:center}
+.yorunge .logo{position:absolute;left:17%;top:17%;width:66%;height:66%;object-fit:cover;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 30px 80px -20px rgba(163,77,245,.7),0 0 120px -30px rgba(40,213,215,.6);animation:yuz 7s ease-in-out infinite}
+@keyframes yuz{50%{transform:translateY(-12px)}}
+.halka{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(255,255,255,.1)}
+.h1{inset:6%;border-color:rgba(40,213,215,.28);animation:don 40s linear infinite}
+.h2{inset:0;border:1px dashed rgba(163,77,245,.35);animation:don 70s linear infinite reverse}
+.h3{inset:11%;border:2px solid transparent;border-top-color:var(--or);border-right-color:rgba(244,154,70,.25);animation:don 9s linear infinite;filter:drop-shadow(0 0 8px rgba(244,154,70,.7))}
+.uydu{position:absolute;width:12px;height:12px;border-radius:50%;top:-6px;left:calc(50% - 6px)}
+.h1 .uydu{background:var(--tq);box-shadow:0 0 16px var(--tq)}
+.h2 .uydu{background:var(--mor);box-shadow:0 0 16px var(--mor);top:auto;bottom:-6px}
+@keyframes don{to{transform:rotate(360deg)}}
+.yaziHalka{position:absolute;inset:-4%;animation:don 50s linear infinite}
+.yaziHalka text{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:0;fill:rgba(255,255,255,.45)}
+.rozet{position:absolute;padding:9px 14px;border-radius:14px;background:rgba(17,17,38,.82);border:1px solid var(--cizgi);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);animation:yuz 6s ease-in-out infinite}
+.rozet i{width:8px;height:8px;border-radius:50%;flex:none}
+.rz1{top:8%;left:-4%}.rz1 i{background:var(--tq);box-shadow:0 0 10px var(--tq)}
+.rz2{bottom:14%;right:-6%;animation-delay:-2s}.rz2 i{background:var(--or);box-shadow:0 0 10px var(--or)}
+.rz3{bottom:2%;left:4%;animation-delay:-4s}.rz3 i{background:var(--mor);box-shadow:0 0 10px var(--mor)}
+
+/* ---------- kayan şerit ---------- */
+.serit{border-block:1px solid var(--cizgi);background:rgba(255,255,255,.02);overflow:hidden;padding-block:16px}
+.serit div{display:flex;gap:46px;width:max-content;animation:kay 34s linear infinite;font-family:Unbounded,sans-serif;font-weight:700;font-size:15px;letter-spacing:1px;color:var(--sonuk)}
+.serit span{display:flex;align-items:center;gap:46px}.serit span::after{content:"✦";color:var(--mor)}
+@keyframes kay{to{transform:translateX(-50%)}}
+
+/* ---------- bölüm başlığı ---------- */
+section{padding-block:96px}
+.bb{max-width:640px;margin-bottom:46px}
+.ust-yazi{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:3px;color:var(--tq);text-transform:uppercase}
+h2{font-family:Unbounded,sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,44px);line-height:1.1;letter-spacing:-.8px;margin:12px 0 14px;text-wrap:balance}
+.bb p{color:var(--soluk);font-size:17px}
+
+/* ---------- araç ızgarası (bento) ---------- */
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.kart{position:relative;border-radius:26px;padding:30px;background:var(--kart);border:1px solid var(--cizgi);overflow:hidden;isolation:isolate;transition:transform .35s cubic-bezier(.2,.9,.3,1.2),border-color .3s;display:flex;flex-direction:column;min-width:0}
+.kart::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(40,213,215,.14),transparent 45%);opacity:0;transition:opacity .3s}
+.kart:hover::before{opacity:1}
+.kart:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.16)}
+.kart.buyuk{grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;padding:36px}
+.kart.parlak{border-color:transparent}
+.kart.parlak::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:conic-gradient(from var(--aci,0deg),var(--tq),var(--mor),var(--or),var(--tq));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:aci 6s linear infinite;z-index:-1}
+@property --aci{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes aci{to{--aci:360deg}}
+.ikon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;border:1px solid var(--cizgi)}
+.ikon svg{width:26px;height:26px}
+.i-tq{background:rgba(40,213,215,.12);color:var(--tq)}.i-or{background:rgba(244,154,70,.12);color:var(--or)}.i-mor{background:rgba(163,77,245,.14);color:#c79bff}
+.kart h3{font-family:Unbounded,sans-serif;font-size:21px;font-weight:800;letter-spacing:.3px;margin-bottom:10px}
+.kart p{color:var(--soluk);font-size:15.5px}
+.kart ul{list-style:none;margin:18px 0 0;display:grid;gap:9px;color:var(--soluk);font-size:14.5px}
+.kart li{display:flex;gap:10px;align-items:flex-start}.kart li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--tq);margin-top:9px;flex:none;box-shadow:0 0 8px var(--tq)}
+.kart .alt-sira{margin-top:auto;padding-top:24px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.rozetler{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.rz{font-size:11px;font-weight:800;letter-spacing:1.2px;padding:4px 10px;border-radius:999px;text-transform:uppercase}
+.rz.yeni{background:var(--or);color:#1a0f02}.rz.ucr{background:rgba(40,213,215,.14);color:var(--tq);border:1px solid rgba(40,213,215,.35)}.rz.hit{background:rgba(163,77,245,.18);color:#d4b2ff;border:1px solid rgba(163,77,245,.4)}
+.not-k{font-size:13px;color:var(--sonuk)}
+.yakinda{opacity:.78}
+.sayac[hidden]{display:none}
+.sayac{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px;margin:-6px 0 26px;padding:18px 24px;border-radius:20px;background:var(--kart);border:1px solid var(--cizgi)}
+.sy-ana{display:flex;align-items:baseline;gap:12px}.sy-ana b{font-family:Unbounded,sans-serif;font-size:40px;font-weight:800;color:var(--tq);font-variant-numeric:tabular-nums}.sy-ana span{color:var(--soluk);font-size:16px}
+.sy-alt{display:flex;flex-wrap:wrap;gap:8px}.sy-alt span{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--soluk);border:1px solid var(--cizgi);border-radius:999px;padding:5px 12px}.sy-alt b{color:var(--yaz)}
+.kart.fikir{background:linear-gradient(135deg,rgba(244,154,70,.12),rgba(163,77,245,.12));border-style:dashed;border-color:rgba(244,154,70,.35)}
+.yakinda .kilit{position:absolute;top:22px;right:22px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:2px;color:var(--sonuk);border:1px solid var(--cizgi);border-radius:999px;padding:4px 10px}
+
+/* mini panel önizlemesi (KAFA kartı) */
+.mini{position:relative;aspect-ratio:16/11;border-radius:18px;background:radial-gradient(400px 260px at 50% 45%,#211a55,#0c0b20 70%);border:1px solid rgba(40,213,215,.25);overflow:hidden;box-shadow:inset 0 0 60px rgba(0,0,0,.5),0 20px 60px -20px rgba(40,213,215,.35)}
+.mini .cek{position:absolute;left:50%;top:46%;width:38%;aspect-ratio:1;transform:translate(-50%,-50%)}
+.mini .cek i{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(40,213,215,.4)}
+.mini .cek i:nth-child(2){inset:12%;border:2px solid transparent;border-top-color:var(--tq);border-left-color:var(--tq);animation:don 4s linear infinite}
+.mini .cek i:nth-child(3){inset:12%;border:2px solid transparent;border-bottom-color:var(--or);animation:don 6s linear infinite reverse}
+.mini .cek i:nth-child(4){inset:-10%;border:1px dashed rgba(163,77,245,.45);animation:don 20s linear infinite}
+.mini .cek b{position:absolute;inset:0;display:grid;place-items:center;font-family:Unbounded,sans-serif;font-weight:900;font-size:clamp(12px,1.6vw,18px);color:var(--tq);letter-spacing:2px;text-shadow:0 0 14px rgba(40,213,215,.7)}
+.mini .mk{position:absolute;width:27%;padding:8px;border-radius:9px;background:rgba(18,18,48,.85);border:1px solid rgba(255,255,255,.1);display:grid;gap:5px}
+.mini .mk::before{content:"";height:5px;width:45%;border-radius:3px;background:rgba(255,255,255,.25)}
+.mini .mk span{height:4px;border-radius:2px;background:rgba(255,255,255,.12)}.mini .mk span:nth-child(odd){width:80%}
+.mini .m1{left:5%;top:8%;animation:yuz 5s ease-in-out infinite}.mini .m2{left:5%;bottom:10%;animation:yuz 6s ease-in-out infinite -2s}
+.mini .m3{right:5%;top:8%;animation:yuz 5.5s ease-in-out infinite -1s}.mini .m4{right:5%;bottom:10%;animation:yuz 6.5s ease-in-out infinite -3s}
+.mini svg.ser{position:absolute;inset:0;width:100%;height:100%}
+.mini svg.ser path{fill:none;stroke:url(#gs);stroke-width:1.2;stroke-dasharray:4 6;animation:akisCiz 2.5s linear infinite}
+@keyframes akisCiz{to{stroke-dashoffset:-40}}
+.mini .sel{position:absolute;left:0;right:0;bottom:6%;text-align:center;font-weight:800;font-size:clamp(11px,1.3vw,14px)}.mini .sel em{font-style:normal;color:var(--or)}
+
+.gercek{position:relative;display:block;border-radius:18px;overflow:hidden;border:1px solid rgba(40,213,215,.35);box-shadow:0 24px 60px -20px rgba(40,213,215,.45),0 0 0 1px rgba(255,255,255,.04);aspect-ratio:16/10;background:#0b0b1c;min-width:0}
+.gercek video{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.gercek:hover video{transform:scale(1.03)}
+.gercek .canli{position:absolute;left:12px;top:12px;font:700 11px Inter,sans-serif;letter-spacing:1.5px;color:#fff;background:rgba(11,11,28,.75);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:5px 10px;display:flex;align-items:center;gap:6px;backdrop-filter:blur(6px)}
+.gercek .canli i{width:7px;height:7px;border-radius:50%;background:#3DDC84;box-shadow:0 0 8px #3DDC84;animation:yanip 1.6s ease-in-out infinite}
+@keyframes yanip{50%{opacity:.3}}
+/* ---------- nasıl çalışır ---------- */
+.adimlar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:a;position:relative}
+.adim{position:relative;padding:30px;border-radius:24px;background:var(--kart);border:1px solid var(--cizgi);min-width:0}
+.adim .no{font-family:Unbounded,sans-serif;font-weight:900;font-size:56px;line-height:1;background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.02));-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:18px}
+.adim h3{font-family:Unbounded,sans-serif;font-size:18px;font-weight:700;margin-bottom:8px}
+.adim p{color:var(--soluk);font-size:15px}
+.adim code{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--or);background:rgba(244,154,70,.1);padding:2px 7px;border-radius:6px}
+
+/* ---------- güven + son çağrı ---------- */
+.guven{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:20px}
+.guven div{padding:22px 24px;border-radius:20px;border:1px solid var(--cizgi);background:rgba(255,255,255,.02);display:flex;gap:14px;align-items:flex-start;min-width:0}
+.guven svg{width:22px;height:22px;flex:none;color:var(--tq);margin-top:2px}
+.guven b{display:block;font-size:15px;margin-bottom:3px}.guven span{color:var(--soluk);font-size:14px}
+.son{position:relative;border-radius:32px;padding:clamp(36px,6vw,72px);text-align:center;overflow:hidden;background:linear-gradient(135deg,rgba(163,77,245,.35),rgba(40,213,215,.18) 60%,rgba(244,154,70,.25));border:1px solid rgba(255,255,255,.14)}
+.son::before{content:"";position:absolute;inset:-50%;background:conic-gradient(from 0deg,transparent,rgba(255,255,255,.08),transparent 30%);animation:don 14s linear infinite}
+.son>*{position:relative}
+.son h2{margin-top:0}.son p{color:#dcd8ff;max-width:560px;margin:0 auto 28px;font-size:17px}
+footer{padding-block:40px 56px;color:var(--sonuk);font-size:14px;border-top:1px solid var(--cizgi);margin-top:96px}
+footer .kap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer .kanal{display:flex;gap:18px;flex-wrap:wrap}footer .kanal a:hover{color:var(--yaz)}
+
+
+/* ---------- kaydırınca hareket eden dev yazılar ---------- */
+.dev{padding-block:70px;overflow:hidden;display:grid;gap:6px}
+.dev .sira{display:flex;gap:.45em;white-space:nowrap;font-family:Unbounded,sans-serif;font-weight:900;font-size:clamp(56px,11vw,168px);line-height:1;letter-spacing:-2px;will-change:transform}
+.dev .sira span{flex:none}
+.dev .bos{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.22)}
+.dev .c1{color:var(--tq)}.dev .c2{color:var(--or)}.dev .c3{color:var(--mor)}
+.dev .c4{background:linear-gradient(90deg,var(--tq),var(--mor),var(--or));-webkit-background-clip:text;background-clip:text;color:transparent}
+/* başlıklar kelime kelime dolar */
+h2 .kel{display:inline-block;color:rgba(255,255,255,.14);transform:translateY(.35em);transition:color .35s,transform .5s cubic-bezier(.2,.9,.2,1)}
+h2 .kel.dol{color:var(--yaz);transform:none}
+h2 .kel.renk.dol{color:var(--kr,var(--tq))}
+
+/* ---------- oyun alanı: uçuşan voxel küpler ---------- */
+.kupler{position:fixed;inset:0;z-index:-1;pointer-events:none;perspective:900px}
+.kup{position:absolute;width:var(--s);height:var(--s);transform-style:preserve-3d;will-change:transform}
+.kup .ic{position:absolute;inset:0;transform-style:preserve-3d;animation:kupDon var(--t,18s) linear infinite}
+.kup b{position:absolute;inset:0;border-radius:calc(var(--s)*.12);box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.kup b:nth-child(1){transform:translateZ(calc(var(--s)/2));background:var(--k)}
+.kup b:nth-child(2){transform:rotateY(180deg) translateZ(calc(var(--s)/2));background:var(--k)}
+.kup b:nth-child(3){transform:rotateY(90deg) translateZ(calc(var(--s)/2));background:color-mix(in srgb,var(--k) 70%,#000)}
+.kup b:nth-child(4){transform:rotateY(-90deg) translateZ(calc(var(--s)/2));background:color-mix(in srgb,var(--k) 70%,#000)}
+.kup b:nth-child(5){transform:rotateX(90deg) translateZ(calc(var(--s)/2));background:color-mix(in srgb,var(--k) 70%,#fff)}
+.kup b:nth-child(6){transform:rotateX(-90deg) translateZ(calc(var(--s)/2));background:color-mix(in srgb,var(--k) 55%,#000)}
+@keyframes kupDon{from{transform:rotateX(-22deg) rotateY(0)}to{transform:rotateX(-22deg) rotateY(360deg)}}
+/* kartlara kendi rengi */
+.kart{--ac:40,213,215}
+.kart[data-renk="or"]{--ac:244,154,70}.kart[data-renk="mor"]{--ac:163,77,245}
+.kart::before{background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(var(--ac),.2),transparent 45%)!important}
+/* kutuların kenarında dolaşan ışık */
+.adim,.guven>div{--ac:40,213,215;position:relative;isolation:isolate}
+.adim:nth-child(2),.guven>div:nth-child(2){--ac:244,154,70}.adim:nth-child(3),.guven>div:nth-child(3){--ac:163,77,245}
+.kart:not(.parlak)::after,.adim::after,.guven>div::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:2px;pointer-events:none;z-index:1;
+  background:conic-gradient(from var(--aci,0deg),rgba(var(--ac),.18) 0 50%,rgba(var(--ac),.35) 60%,rgba(var(--ac),1) 80%,#fff 84%,rgba(var(--ac),1) 87%,rgba(var(--ac),.18) 95%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:aci var(--hz,6s) linear infinite;animation-delay:var(--gec,0s);opacity:.95;transition:opacity .3s;filter:drop-shadow(0 0 8px rgba(var(--ac),.9)) drop-shadow(0 0 2px rgba(var(--ac),1))}
+.kart:hover::after,.adim:hover::after,.guven>div:hover::after{opacity:1}
+.adim,.guven>div,.kart:not(.parlak){box-shadow:inset 0 0 40px -10px rgba(var(--ac),.18)}
+.bento>.kart:nth-child(2){--gec:-1s}.bento>.kart:nth-child(3){--gec:-2.5s;--hz:7s}.bento>.kart:nth-child(4){--gec:-4s}.bento>.kart:nth-child(5){--gec:-1.7s;--hz:8s}.bento>.kart:nth-child(6){--gec:-3.2s}.bento>.kart:nth-child(7){--gec:-.6s;--hz:7s}
+.adim:nth-child(2){--gec:-2s}.adim:nth-child(3){--gec:-4s}.guven>div:nth-child(1){--hz:7s;--gec:-1s}.guven>div:nth-child(2){--hz:7s;--gec:-3s}.guven>div:nth-child(3){--hz:7s;--gec:-5s}
+.guven>div{transition:transform .35s cubic-bezier(.2,.9,.3,1.2)}.guven>div:hover{transform:translateY(-3px)}
+.kart:hover{box-shadow:0 24px 60px -24px rgba(var(--ac),.55)}
+.kart:hover .ikon{animation:zipla .6s cubic-bezier(.3,1.6,.5,1)}
+@keyframes zipla{30%{transform:translateY(-8px) rotate(-8deg) scale(1.08)}60%{transform:translateY(0) rotate(4deg)}}
+h1 .k{cursor:default}
+h1 .k:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1)!important;opacity:1;transform:none}
+h1 .r4:hover{animation:salla .5s cubic-bezier(.3,1.6,.5,1),akis 6s linear infinite!important}
+@keyframes salla{30%{transform:rotate(-6deg) scale(1.08)}60%{transform:rotate(4deg) scale(.98)}}
+.adim:nth-child(1) .no{background-image:linear-gradient(180deg,var(--tq),rgba(40,213,215,.08))}
+.adim:nth-child(2) .no{background-image:linear-gradient(180deg,var(--or),rgba(244,154,70,.08))}
+.adim:nth-child(3) .no{background-image:linear-gradient(180deg,#c79bff,rgba(163,77,245,.08))}
+.adim{transition:transform .35s cubic-bezier(.2,.9,.3,1.2),border-color .3s}.adim:hover{transform:translateY(-4px) rotate(-.6deg);border-color:rgba(255,255,255,.18)}
+#konfeti{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
+/* ---------- görünme animasyonu ---------- */
+.gor{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.gor.ac{opacity:1;transform:none}
+
+/* ---------- telefon / tablet ---------- */
+@media (max-width:980px){
+  .hero .kap{grid-template-columns:1fr;text-align:center}
+  .hero .alt{margin-inline:auto}.cta,.ozet{justify-content:center}
+  .yorunge{width:min(360px,86%);order:-1}
+  .bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kart.buyuk{grid-column:span 2}.kart.fikir{grid-column:auto}
+  .adimlar,.guven{grid-template-columns:1fr}
+}
+@media (max-width:680px){
+  .menu a:not(.dug){display:none}
+  .hero{padding:44px 0 50px}
+  section{padding-block:68px}
+  .bento{grid-template-columns:1fr}
+  .kart.buyuk,.kart.fikir{grid-column:auto}.kart.buyuk{grid-template-columns:1fr;padding:26px}
+  .kart{padding:26px}
+  .rz1{left:0}.rz2{right:0}.yaziHalka{inset:1%}
+  .rozet{font-size:12px;padding:7px 11px}
+  .dug{padding:12px 18px}
+}
+/* ---------- akademi bandı ---------- */
+.akd-bant{padding-block:56px 0}
+.akd-kart{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:30px;align-items:center;padding:34px;border-radius:28px;background:linear-gradient(135deg,rgba(163,77,245,.25),rgba(40,213,215,.1) 60%,rgba(244,154,70,.12));border:1px solid rgba(163,77,245,.45);transition:transform .3s,box-shadow .3s}
+.akd-kart:hover{transform:translateY(-3px);box-shadow:0 24px 60px -24px rgba(163,77,245,.7)}
+.akd-yeni{display:inline-block;background:var(--or);color:#1a1030;font-weight:800;font-size:12px;letter-spacing:1px;padding:4px 11px;border-radius:999px}
+.akd-sol h2{font-family:Unbounded,sans-serif;font-size:clamp(26px,3.6vw,40px);margin:12px 0 10px;line-height:1.1}
+.akd-sol h2 em{font-style:normal;background:linear-gradient(100deg,var(--mor),var(--tq) 55%,var(--or));-webkit-background-clip:text;background-clip:text;color:transparent}
+.akd-sol p{color:var(--soluk);max-width:560px;margin-bottom:20px}
+.akd-sag{display:grid;grid-template-columns:repeat(2,minmax(0,110px));gap:10px}
+.akd-sag div{background:rgba(11,11,28,.5);border:1px solid var(--cizgi);border-radius:18px;padding:14px;text-align:center;font-size:13px;color:var(--soluk)}
+.akd-sag b{display:block;font-family:Unbounded,sans-serif;font-size:24px;color:var(--yaz)}
+@media (max-width:680px){.akd-kart{grid-template-columns:minmax(0,1fr);padding:24px}.akd-sag{grid-template-columns:repeat(4,minmax(0,1fr))}.akd-sag div{padding:10px 4px;font-size:11.5px}.akd-sag b{font-size:18px}}
+footer .kanal{display:flex;gap:10px;flex-wrap:wrap}
+footer .kanal a.sos{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#cfcbe8;transition:transform .2s,background .2s,color .2s,border-color .2s}
+footer .kanal a.sos svg{width:21px;height:21px}
+footer .kanal a.sos:hover,footer .kanal a.sos:focus-visible{transform:translateY(-3px);color:#fff;border-color:transparent}
+footer .kanal a.sos-instagram:hover,footer .kanal a.sos-instagram:focus-visible{background:linear-gradient(45deg,#F58529,#DD2A7B 50%,#8134AF)}
+footer .kanal a.sos-youtube:hover,footer .kanal a.sos-youtube:focus-visible{background:#FF0000}
+footer .kanal a.sos-tiktok:hover,footer .kanal a.sos-tiktok:focus-visible{background:#000;box-shadow:-2px -2px 0 #25F4EE,2px 2px 0 #FE2C55}
+footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{background:#26A5E4}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.gor{opacity:1;transform:none}h1 .k{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="/assets/vk-nav.css">
+</head>
+<body>
+<div class="zemin" aria-hidden="true"><div class="aur a1"></div><div class="aur a2"></div><div class="aur a3"></div><div class="izgara"></div><canvas id="parcacik"></canvas><div class="gren"></div></div>
+<div class="kupler" aria-hidden="true"><div class="kup" style="left:6%;top:22%;--s:44px;--k:#F49A46;--t:16s" data-h="0.25"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="kup" style="left:88%;top:16%;--s:34px;--k:#28D5D7;--t:13s" data-h="0.4"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="kup" style="left:78%;top:62%;--s:56px;--k:#A34DF5;--t:22s" data-h="0.15"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="kup" style="left:12%;top:74%;--s:28px;--k:#28D5D7;--t:11s" data-h="0.5"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="kup" style="left:46%;top:88%;--s:38px;--k:#F49A46;--t:18s" data-h="0.3"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="kup" style="left:94%;top:86%;--s:22px;--k:#ffffff;--t:9s" data-h="0.6"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div><div class="kup" style="left:30%;top:40%;--s:18px;--k:#A34DF5;--t:10s" data-h="0.7"><div class="ic"><b></b><b></b><b></b><b></b><b></b><b></b></div></div></div>
+<canvas id="konfeti" aria-hidden="true"></canvas>
+
+<header class="vk-nav" data-vk-nav>
+ <div class="vk-nav-ic">
+  <a class="vk-marka" href="/en/" aria-label="Vibe Kafası home"><img src="/assets/logo-256.webp" alt="" width="40" height="40"><span class="vk-yazi"><span class="vk-ad"><b>VIBE</b> <i>KAFASI</i></span><small>Code, Create, Learn, Have fun!</small></span></a>
+  <nav class="vk-linkler" aria-label="Main menu"><span class="vk-isik" aria-hidden="true"></span><a href="/en/akademi/" data-yol="/en/akademi/">Academy<span class=vk-yeni>NEW</span></a><a href="/en/akademi/videolar/" data-yol="/en/akademi/videolar/">Videos</a><a href="/en/#araclar" data-yol="/en/#araclar">Tools</a><a href="/en/akademi/sozluk/" data-yol="/en/akademi/sozluk/">Glossary</a><a href="/en/akademi/mezuniyet/" data-yol="/en/akademi/mezuniyet/">Graduation</a></nav>
+  <div class="vk-sag"><div class="vk-dil" role="group" aria-label="Dil / Язык / Language"><a href="/" hreflang="tr" lang="tr">TR</a><a href="/ru/" hreflang="ru" lang="ru">RU</a><span aria-current="true">EN</span></div><a class="vk-cta" href="https://t.me/vibekafasi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3Z"/></svg>Telegram</a><button type="button" class="vk-menu-dug" aria-expanded="false" aria-controls="vkMobil" aria-label="Open menu"><i></i><i></i><i></i></button></div>
+ </div>
+ <div class="vk-mobil" id="vkMobil" aria-hidden="true"><a class="ml" href="/en/akademi/" data-yol="/en/akademi/"><small>01</small>Academy</a><a class="ml" href="/en/akademi/videolar/" data-yol="/en/akademi/videolar/"><small>02</small>Videos</a><a class="ml" href="/en/#araclar" data-yol="/en/#araclar"><small>03</small>Tools</a><a class="ml" href="/en/akademi/sozluk/" data-yol="/en/akademi/sozluk/"><small>04</small>Glossary</a><a class="ml" href="/en/akademi/mezuniyet/" data-yol="/en/akademi/mezuniyet/"><small>05</small>Graduation</a><div class="vk-alt"><div class="vk-dil" role="group" aria-label="Dil / Язык / Language"><a href="/" hreflang="tr" lang="tr">TR</a><a href="/ru/" hreflang="ru" lang="ru">RU</a><span aria-current="true">EN</span></div><a class="vk-cta" href="https://t.me/vibekafasi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3Z"/></svg>Telegram channel (in Turkish)</a><div class="vk-sos"><a href="https://www.instagram.com/vibe.kafasi/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a><a href="https://www.youtube.com/@vibe.kafasi" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://www.tiktok.com/@vibe.kafasi" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://t.me/vibekafasi" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a></div></div></div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="kap">
+    <div>
+      <div class="etiket gor"><span>FREE</span> AI tools for beginners</div>
+      <h1><span class="k r1" style="animation-delay:.05s">Code,</span> <span class="k r2" style="animation-delay:.18s">Create,</span><br><span class="k r3" style="animation-delay:.31s">Learn,</span> <span class="k r4" style="animation-delay:.44s">Have fun!</span></h1>
+      <p class="alt gor">Tools that <b>actually work</b>, no coding needed. Grab the file, give it to Claude, and in a few minutes you have your own assistant, your own jury, your own plan.</p>
+      <div class="cta gor">
+        <a class="dug ana" href="#araclar">Explore the tools <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="dug cam" href="/en/kafa/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z" fill="currentColor"/></svg>Try the KAFA panel</a>
+      </div>
+      <div class="ozet gor">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Completely free</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Step by step</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>2-minute setup</div>
+      </div>
+    </div>
+    <div class="yorunge" aria-hidden="true">
+      <svg class="yaziHalka" viewBox="0 0 200 200"><defs><path id="cember" d="M100,100 m-92,0 a92,92 0 1,1 184,0 a92,92 0 1,1 -184,0"/></defs><text><textPath href="#cember" textLength="570" lengthAdjust="spacing">CLAUDE + CODEX + ME · VIBE KAFASI · CODE CREATE LEARN HAVE FUN ·</textPath></text></svg>
+      <div class="halka h2"><span class="uydu"></span></div>
+      <div class="halka h1"><span class="uydu"></span></div>
+      <div class="halka h3"></div>
+      <img class="logo" src="/assets/logo.webp" alt="" width="512" height="512">
+      <div class="rozet rz1"><i></i>KAFA ASİSTAN</div>
+      <div class="rozet rz2"><i></i>MAHKEME ⚖️</div>
+      <div class="rozet rz3"><i></i>Claude + Codex</div>
+    </div>
+  </div>
+</section>
+
+<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>CARTOON GUIDE</span><span>FIRST CUSTOMER</span><span>SAFE START</span><span>CODE GUARD</span><span>IT'S BROKEN</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>CARTOON GUIDE</span><span>FIRST CUSTOMER</span><span>SAFE START</span><span>CODE GUARD</span><span>IT'S BROKEN</span></div></div>
+
+<section class="akd-bant">
+  <div class="kap">
+    <a class="akd-kart gor" href="/en/akademi/">
+      <div class="akd-sol"><span class="akd-yeni">NEW</span><h2>Vibe Kafası <em>Academy</em></h2><p>Learn to build software with AI from scratch, no coding required: 10 modules, 52 short lessons, a glossary, badges and a shareable graduation card.</p><span class="dug ana">Go to the Academy <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      <div class="akd-sag" aria-hidden="true"><div><b>10</b>modules</div><div><b>52</b>lessons</div><div><b>156</b>terms</div><div><b>🎓</b>graduation</div></div>
+    </a>
+  </div>
+</section>
+
+<section id="araclar">
+  <div class="kap">
+    <div class="bb gor"><div class="ust-yazi">// Toolbox</div><h2>One file. One command. Done.</h2><p>Every tool is built for people who have never written code. Each step tells you exactly what to do.</p></div>
+    <div class="sayac" id="sayac" hidden aria-live="polite"><div class="sy-ana"><b id="sy-top">0</b><span>people have grabbed our free tools</span></div><div class="sy-alt" id="sy-alt"></div></div>
+    <div class="bento">
+      <article class="kart buyuk parlak gor">
+        <div>
+          <div class="rozetler"><span class="rz yeni">New</span><span class="rz ucr">Free</span></div>
+          <div class="ikon i-tq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7.5" stroke-dasharray="3 3"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></svg></div>
+          <h3>KAFA ASİSTAN</h3>
+          <p>Your own Jarvis. It gets to know you, plans your day, remembers what you tell it, writes like you and is always honest with you.</p>
+          <ul><li>Say "Good morning" and get your top 3 tasks for the day</li><li>Control it with your hand via camera and your voice via mic</li><li>Your data stays with you and goes nowhere</li></ul>
+          <div class="alt-sira"><a class="dug ana kucuk" href="https://t.me/vibekafasibot?start=kafa" target="_blank" rel="noopener">Get it on Telegram</a><a class="dug cam kucuk" href="/en/kafa/">Open the sample panel</a><a class="dug cam kucuk" href="/en/kilavuz/">User guide</a><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span></div>
+        </div>
+        <a class="gercek" href="/en/kafa/" aria-label="Open the KAFA panel">
+          <video src="/assets/kafa_panel.mp4" poster="/assets/kafa_panel.jpg" autoplay muted loop playsinline preload="metadata" aria-hidden="true"></video>
+          <span class="canli"><i></i>REAL PANEL</span>
+        </a>
+      </article>
+
+      <article class="kart gor" data-renk="or">
+        <div class="rozetler"><span class="rz hit">Most loved</span><span class="rz ucr">Free</span></div>
+        <div class="ikon i-or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 4 6 6M11 7l6 6M12.5 5.5 8 10l6 6 4.5-4.5M10 14l-7 7M3 21h8"/></svg></div>
+        <h3>MAHKEME</h3>
+        <p>Put your idea on trial before you put money into it. Prosecutor, defense, a 12-person jury and the judge's verdict.</p>
+        <ul><li>7-day test plan</li><li>WILL WORK · WORKS WITH CONDITIONS · WILL FAIL</li></ul>
+        <div class="alt-sira"><a class="dug cam kucuk" href="https://t.me/vibekafasibot?start=mahkeme" target="_blank" rel="noopener">Get it on Telegram</a><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span></div>
+      </article>
+
+      <article class="kart gor" data-renk="mor">
+        <div class="rozetler"><span class="rz ucr">Free guide</span></div>
+        <div class="ikon i-mor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 9h18M7 5v4M12 5v4M17 5v4"/><path d="m10.5 12.5 3.5 2-3.5 2z" fill="currentColor"/></svg></div>
+        <h3>CARTOON GUIDE</h3>
+        <p>Your first AI cartoon in 5 steps with free tools. Ready-made prompts and the 5 most common mistakes.</p>
+        <div class="alt-sira"><a class="dug cam kucuk" href="https://t.me/vibekafasibot?start=cizgifilm" target="_blank" rel="noopener">Get it on Telegram</a><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span></div>
+      </article>
+
+      <article class="kart yakinda gor"><span class="kilit">SOON</span>
+        <div class="ikon i-tq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.3-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M21.5 20c-.5-2.4-1.8-4-3.5-4.8"/></svg></div>
+        <h3>FIRST CUSTOMER</h3>
+        <p>Sell first, build later. A 7-day plan from what you already know and who you already know to your first paying customer.</p>
+        <ul><li>3 problems people pay for and a one-sentence offer</li><li>Ready messages for your first 10 people, answers to objections</li><li>A number to hit every day, a clear decision on day 7</li></ul><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span>
+      </article>
+
+      <article class="kart yakinda gor" data-renk="or"><span class="kilit">SOON</span>
+        <div class="ikon i-or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4 6v6c0 4.7 3.4 8.6 8 9.5 4.6-.9 8-4.8 8-9.5V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></div>
+        <h3>SAFE START</h3>
+        <p>Hang a workplace-safety sign on your project: the AI reads 9 rules every session and works by them.</p>
+        <ul><li>Plan first, back up first, no "done" without testing</li><li>Passwords never go into code or onto GitHub</li><li>Ready for Claude Code, Codex and regular chat</li></ul><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span>
+      </article>
+
+      <article class="kart yakinda gor" data-renk="mor"><span class="kilit">SOON</span>
+        <div class="ikon i-mor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-4.5-4.5M11 8v3.5M11 14.5h.01"/></svg></div>
+        <h3>CODE GUARD</h3>
+        <p>Patrols your project like a night guard and leaves a "fix this" list. Never touches a single file.</p>
+        <ul><li>Exposed API keys and passwords</li><li>Secret files about to go to GitHub, missing backups</li><li>Publicly open databases and risky settings</li></ul><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span>
+      </article>
+      <article class="kart yakinda gor"><span class="kilit">SOON</span>
+        <div class="ikon i-tq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.4 1.4 0 0 0 2 2l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.4 2.4-2-2z"/></svg></div>
+        <h3>IT'S BROKEN</h3>
+        <p>Got a red error? Like a seasoned repair pro, it finds the cause first, then fixes it in small steps.</p>
+        <ul><li>Translates the error into plain language</li><li>The most likely causes, with evidence</li><li>A ready-made prompt to give your AI</li></ul><span class="not-k" style="display:block;margin-top:10px">Turkish only for now.</span>
+      </article>
+      <article class="kart fikir gor" data-renk="or">
+        <div class="ikon i-or"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.4 1 1.1 1 1.8V16h5v-.3c0-.7.4-1.4 1-1.8A6 6 0 0 0 12 3z"/></svg></div>
+        <h3>Pick the next tool</h3>
+        <p>What task wears you out? What tool do you want? Write to our Telegram channel, and the most requested one becomes the next free tool.</p>
+        <div class="alt-sira"><a class="dug ana kucuk" href="https://t.me/vibekafasi" target="_blank" rel="noopener">Share your idea</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="dev" aria-hidden="true">
+  <div class="sira" data-hiz="-0.35"><span class="c1">CODE</span><span class="bos">CREATE</span><span class="c2">LEARN</span><span class="bos">HAVE FUN</span><span class="c4">VIBE KAFASI</span><span class="bos">CODE</span><span class="c3">CREATE</span></div>
+  <div class="sira" data-hiz="0.35" style="justify-content:flex-end"><span class="bos">CLAUDE</span><span class="c2">+</span><span class="c1">CODEX</span><span class="c2">+</span><span class="c3">ME</span><span class="bos">FREE</span><span class="c4">TOOLS</span></div>
+</section>
+
+<section id="nasil">
+  <div class="kap">
+    <div class="bb gor"><div class="ust-yazi">// How to get it</div><h2>Yours in three steps.</h2><p>All free. The only condition is joining our Telegram channel (in Turkish); new tools show up there first.</p></div>
+    <div class="adimlar">
+      <div class="adim gor"><div class="no">01</div><h3>Type the word</h3><p>Comment the tool's keyword under our Instagram video (e.g. <code>MAHKEME</code>) or tap the button on this page.</p></div>
+      <div class="adim gor"><div class="no">02</div><h3>Join Telegram</h3><p>Our bot invites you to the channel. The moment you join, you get the file and simple instructions.</p></div>
+      <div class="adim gor"><div class="no">03</div><h3>Give it to Claude</h3><p>Upload the file to Claude and type one command. The tool walks you through the rest step by step.</p></div>
+    </div>
+    <div class="guven">
+      <div class="gor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10.5" width="16" height="10.5" rx="2.5"/><path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/></svg><p><b>Your data stays yours</b><span>The tools run in your own Claude account; we see nothing.</span></p></div>
+      <div class="gor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg><p><b>Nothing without your OK</b><span>Without your "yes", nothing gets sent, deleted or bought.</span></p></div>
+      <div class="gor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-1.5zM4 19a2 2 0 0 1 2-2h12"/></svg><p><b>Simple, step by step</b><span>No tech jargon. Every step tells you what to do.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dev" aria-hidden="true" style="padding-top:0">
+  <div class="sira" data-hiz="-0.3"><span class="bos">KAFA</span><span class="c1">ASİSTAN</span><span class="bos">MAHKEME</span><span class="c2">FIRST CUSTOMER</span><span class="bos">CODE GUARD</span><span class="c3">SAFE START</span></div>
+</section>
+
+<section>
+  <div class="kap">
+    <div class="son gor">
+      <div class="ust-yazi" style="color:#fff;opacity:.8">// Community</div>
+      <h2>New tools land on Telegram first.</h2>
+      <p>Every new tool, video and tip is shared there first. Join so you don't miss out. The channel is in Turkish.</p>
+      <a class="dug ana" href="https://t.me/vibekafasi" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.9 4.3 18.6 20c-.2 1.1-.9 1.4-1.8.9l-5-3.7-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1 9.2-8.3c.4-.4-.1-.6-.6-.2L6 13.6l-4.9-1.5c-1.1-.3-1.1-1.1.2-1.6L20.5 3c.9-.3 1.7.2 1.4 1.3Z"/></svg>Join the Telegram channel (in Turkish)</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="kap">
+    <div>© 2026 Vibe Kafası · Code, Create, Learn, Have fun!</div>
+    <div class="kanal"><a class="sos sos-instagram" href="https://www.instagram.com/vibe.kafasi/" target="_blank" rel="noopener" aria-label="Vibe Kafası Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></a><a class="sos sos-youtube" href="https://www.youtube.com/@vibe.kafasi" target="_blank" rel="noopener" aria-label="Vibe Kafası YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a class="sos sos-tiktok" href="https://www.tiktok.com/@vibe.kafasi" target="_blank" rel="noopener" aria-label="Vibe Kafası TikTok" title="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a class="sos sos-telegram" href="https://t.me/vibekafasi" target="_blank" rel="noopener" aria-label="Vibe Kafası Telegram" title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></a></div>
+  </div>
+</footer>
+
+<script>
+// görünür olunca yumuşakça gel
+const go=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('ac');go.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.gor').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.bento,.adimlar,.guven')?(i%3)*.08:0)+'s';go.observe(el)});
+// sayaç: yalnız gerçek sayılar (assets/sayilar.json, bot istatistiğinden). Dosya yoksa sayaç görünmez.
+fetch('/assets/sayilar.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
+  if(!d||!d.araclar)return;const ad={mahkeme:'Mahkeme',cizgifilm:'Cartoon',kafa:'KAFA Asistan'};
+  const top=Object.values(d.araclar).reduce((a,b)=>a+(+b||0),0);if(top<1)return;
+  const el=document.getElementById('sayac'),n=document.getElementById('sy-top');el.hidden=false;
+  document.getElementById('sy-alt').innerHTML=Object.entries(d.araclar).filter(([k,v])=>v>0).map(([k,v])=>`<span>${ad[k]||k} <b>${(+v).toLocaleString('en-US')}</b></span>`).join('');
+  const az=matchMedia('(prefers-reduced-motion:reduce)').matches;if(az){n.textContent=top.toLocaleString('en-US');return}
+  new IntersectionObserver((g,o)=>{if(!g[0].isIntersecting)return;o.disconnect();const t0=performance.now();
+    (function f(t){const k=Math.min(1,(t-t0)/1400),e=1-Math.pow(1-k,3);n.textContent=Math.round(top*e).toLocaleString('en-US');if(k<1)requestAnimationFrame(f)})(t0)}).observe(el);
+}).catch(()=>{});
+// kartlarda imleci takip eden ışık
+document.querySelectorAll('.kart').forEach(k=>k.addEventListener('pointermove',e=>{const r=k.getBoundingClientRect();k.style.setProperty('--mx',(e.clientX-r.left)+'px');k.style.setProperty('--my',(e.clientY-r.top)+'px')}));
+// arka planda yavaşça süzülen, birbirine bağlanan noktalar
+(()=>{const c=document.getElementById('parcacik'),g=c.getContext('2d');if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  let W,H,P=[];const R=['40,213,215','163,77,245','244,154,70'];
+  function boy(){const d=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;g.setTransform(d,0,0,d,0,0);
+    const n=Math.round(Math.min(70,W*H/22000));P=Array.from({length:n},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.6+.5,c:R[Math.random()*3|0]}))}
+  boy();addEventListener('resize',boy);
+  (function ciz(){g.clearRect(0,0,W,H);for(const p of P){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;g.beginPath();g.arc(p.x,p.y,p.r,0,7);g.fillStyle=`rgba(${p.c},.7)`;g.fill()}
+    for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const a=P[i],b=P[j],d=Math.hypot(a.x-b.x,a.y-b.y);if(d<120){g.strokeStyle=`rgba(${a.c},${(1-d/120)*.16})`;g.lineWidth=.7;g.beginPath();g.moveTo(a.x,a.y);g.lineTo(b.x,b.y);g.stroke()}}
+    requestAnimationFrame(ciz)})()})();
+// dev yazılar kaydırdıkça yana kayar; başlıklar kelime kelime dolar
+(()=>{const az=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const renkler=['var(--tq)','var(--or)','#c79bff'];
+  document.querySelectorAll('h2').forEach((h,hi)=>{const ks=h.textContent.trim().split(/\s+/);h.innerHTML='';
+    ks.forEach((k,i)=>{const sp=document.createElement('span');sp.className='kel'+(i===ks.length-1?' renk':'');if(i===ks.length-1)sp.style.setProperty('--kr',renkler[hi%3]);sp.textContent=k;h.appendChild(sp);if(i<ks.length-1)h.appendChild(document.createTextNode(' '))})});
+  const siralar=[...document.querySelectorAll('.dev .sira')],basliklar=[...document.querySelectorAll('h2')];let bekle=false;
+  function guncelle(){bekle=false;const H=innerHeight;
+    if(!az)siralar.forEach(s=>{const r=s.parentElement.getBoundingClientRect();const p=(H-r.top)/(H+r.height);s.style.transform=`translateX(${(p-.5)*parseFloat(s.dataset.hiz)*innerWidth*1.2}px)`});
+    basliklar.forEach(h=>{const r=h.getBoundingClientRect();const p=Math.min(1,Math.max(0,(H*.92-r.top)/(H*.42)));const ks=h.querySelectorAll('.kel');ks.forEach((k,i)=>k.classList.toggle('dol',az||p>=(i+1)/(ks.length+1)))})}
+  addEventListener('scroll',()=>{if(!bekle){bekle=true;requestAnimationFrame(guncelle)}},{passive:true});addEventListener('resize',guncelle);guncelle()})();
+// küpler: kaydırınca ve fareyle hafifçe yer değiştirir; ana düğmelerde renkli konfeti
+(()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const K=[...document.querySelectorAll('.kup')];let mx=0,my=0,b=false;
+  function ciz(){b=false;const y=scrollY;K.forEach(k=>{const h=+k.dataset.h;k.style.transform=`translate3d(${mx*h*40}px,${-y*h+my*h*40}px,0)`})}
+  const iste=()=>{if(!b){b=true;requestAnimationFrame(ciz)}};addEventListener('scroll',iste,{passive:true});addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;iste()});ciz();
+  const c=document.getElementById('konfeti'),g=c.getContext('2d');let P=[],calisiyor=false;const R=['#28D5D7','#F49A46','#A34DF5','#ffffff'];
+  function boy(){const d=Math.min(devicePixelRatio||1,2);c.width=innerWidth*d;c.height=innerHeight*d;g.setTransform(d,0,0,d,0,0)}boy();addEventListener('resize',boy);
+  function patlat(x,y){for(let i=0;i<46;i++){const a=Math.random()*Math.PI*2,v=3+Math.random()*6;P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,s:4+Math.random()*6,r:Math.random()*6,vr:(Math.random()-.5)*.4,c:R[i%4],o:1})}if(!calisiyor){calisiyor=true;requestAnimationFrame(adim)}}
+  function adim(){g.clearRect(0,0,innerWidth,innerHeight);P=P.filter(p=>p.o>0);for(const p of P){p.vy+=.25;p.x+=p.vx;p.y+=p.vy;p.vx*=.98;p.r+=p.vr;p.o-=.014;g.save();g.globalAlpha=Math.max(0,p.o);g.translate(p.x,p.y);g.rotate(p.r);g.fillStyle=p.c;g.fillRect(-p.s/2,-p.s/2,p.s,p.s);g.restore()}
+    if(P.length)requestAnimationFrame(adim);else{calisiyor=false;g.clearRect(0,0,innerWidth,innerHeight)}}
+  document.querySelectorAll('.dug.ana').forEach(d=>d.addEventListener('click',e=>{const r=d.getBoundingClientRect();patlat(r.left+r.width/2,r.top+r.height/2)}))})();
+</script>
+<script src="/assets/vk-nav.js" defer></script>
+</body>
+</html>

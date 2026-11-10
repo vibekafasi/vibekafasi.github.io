@@ -12,7 +12,7 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
   var OLAY = {}, KUYRUK = [], gcBekliyor = false;
   function gcGonder() { try { var g = window.goatcounter; if (!(g && g.count)) return false; while (KUYRUK.length) { var o = KUYRUK.shift(); g.count({ path: o[0], title: o[1], event: true }); } return true; } catch (e) { return false; } }
   function gcBekle() { if (gcBekliyor) return; gcBekliyor = true; var n = 0; (function tekrar() { if (gcGonder() || ++n > 24) { gcBekliyor = false; return; } setTimeout(tekrar, 500); })(); }
-  function olay(p, t) { try { if (OLAY[p]) return; OLAY[p] = 1; KUYRUK.push([p, t || p]); if (!gcGonder()) gcBekle(); } catch (e) {} }
+  function olay(p, t) { try { var dl = window.AKD_DIL; if (dl && dl !== 'tr') { p = dl + '-' + p; t = '[' + dl.toUpperCase() + '] ' + (t || p); } if (OLAY[p]) return; OLAY[p] = 1; KUYRUK.push([p, t || p]); if (!gcGonder()) gcBekle(); } catch (e) {} }
   function modNo(did) { var m = modOf(did); return m ? (+m.slice(1) + 1) : 0; }
   function modOf(did) { var x = SIRA.find(function (y) { return y[0] === did; }); return x ? x[2] : null; }
   function modulTam(m) { var l = SIRA.filter(function (y) { return y[2] === m; }); return l.length > 0 && l.every(function (y) { return D.bitti[y[0]]; }); }
@@ -148,7 +148,7 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     }
     function kodla(kod) {
       var n = normal(kod), enc = new TextEncoder();
-      return Promise.all([crypto.subtle.digest('SHA-256', enc.encode(n)), fetch('../anahtar.json', { cache: 'no-cache' }).then(function (r) { return r.json(); })])
+      return Promise.all([crypto.subtle.digest('SHA-256', enc.encode(n)), fetch('/akademi/anahtar.json', { cache: 'no-cache' }).then(function (r) { return r.json(); })])
         .then(function (r) {
           var id = Array.from(new Uint8Array(r[0])).map(function (x) { return x.toString(16).padStart(2, '0'); }).join('').slice(0, 8);
           var e = null; Object.keys(r[1].aylar).forEach(function (a) { if (r[1].aylar[a].id === id) e = r[1].aylar[a]; });
@@ -285,7 +285,7 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     var k = document.getElementById('kartAlan'); k.hidden = false;
     var ad = document.getElementById('mzAd'), tuval = document.getElementById('mzTuval'), tip = 'gonderi';
     try { ad.value = D.mezunAd || ''; } catch (e) {}
-    var logo = new Image(); logo.src = '../../assets/logo-256.webp';
+    var logo = new Image(); logo.src = '/assets/logo-256.webp';
     var hazir = Promise.all([document.fonts.load('900 100px Unbounded'), document.fonts.load('700 60px Unbounded'), document.fonts.load('800 60px Inter'), document.fonts.load('600 30px Inter'), new Promise(function (r) { logo.onload = logo.onerror = r; })]);
     function yenile() { hazir.then(function () { kartCiz(tuval, tip, ad.value.trim(), D.mezun, logo); }); }
     ad.addEventListener('input', function () { D.mezunAd = ad.value.trim(); yaz(D); yenile(); });
@@ -330,12 +330,12 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
       var hk = tip === 'hikaye', y0 = hk ? 250 : 130;
       if (logo.naturalWidth) { g.save(); g.beginPath(); g.arc(W / 2, y0 + 70, 70, 0, Math.PI * 2); g.clip(); g.drawImage(logo, W / 2 - 70, y0, 140, 140); g.restore(); g.beginPath(); g.arc(W / 2, y0 + 70, 72, 0, Math.PI * 2); g.lineWidth = 4; g.strokeStyle = '#A34DF5'; g.stroke(); }
       aralikli('VIBE KAFASI AKADEMİ', W / 2, y0 + 205, '800 30px Inter', '#A9A6CF', 6);
-      yazi('Vibe Kafası', W / 2, y0 + (hk ? 360 : 330), '900 104px Unbounded', '#fff');
-      g.font = '900 136px Unbounded'; g.textAlign = 'center'; g.fillStyle = gradYazi(y0 + 340, y0 + 480); g.fillText('Mezunu', W / 2, y0 + (hk ? 510 : 470));
+      yazi('Vibe Kafası', W / 2, y0 + (hk ? 360 : 330), '900 104px Unbounded', '#fff', 'center', W - 300);
+      g.font = '900 136px Unbounded'; g.textAlign = 'center'; g.fillStyle = gradYazi(y0 + 340, y0 + 480); g.fillText('Mezunu', W / 2, y0 + (hk ? 510 : 470), W - 160);
       var ny = y0 + (hk ? 680 : 600);
       g.strokeStyle = 'rgba(255,255,255,.14)'; g.lineWidth = 2; g.beginPath(); g.moveTo(W * .2, ny - 85); g.lineTo(W * .8, ny - 85); g.stroke();
       yazi(isim, W / 2, ny, '800 74px Inter', ad ? '#fff' : 'rgba(255,255,255,.35)', 'center', W - 200);
-      yazi('52 ders · 10 modül · Mezuniyet sınavı ' + mz.puan + '/15', W / 2, ny + 62, '600 32px Inter', '#A9A6CF');
+      yazi('52 ders · 10 modül · Mezuniyet sınavı ' + mz.puan + '/15', W / 2, ny + 62, '600 32px Inter', '#A9A6CF', 'center', W - 300);
       var by = ny + (hk ? 300 : 165), R = hk ? 80 : 62, ax = hk ? 184 : 168;
       ROZ.forEach(function (r, i) { var sat = Math.floor(i / 5), sut = i % 5; altigen(W / 2 + (sut - 2) * ax, by + sat * (R * 2 + (hk ? 40 : 26)), R, r); });
       var fy = H - (hk ? 230 : 150);
@@ -349,18 +349,18 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
       kenar(100, 100, W - 200, H - 200, 20); g.lineWidth = 2; g.strokeStyle = 'rgba(17,17,38,.18)'; g.stroke();
       if (logo.naturalWidth) { g.save(); g.beginPath(); g.arc(W / 2, 290, 95, 0, Math.PI * 2); g.clip(); g.drawImage(logo, W / 2 - 95, 195, 190, 190); g.restore(); }
       aralikli('VIBE KAFASI AKADEMİ', W / 2, 460, '800 40px Inter', '#6E3BD1', 10);
-      yazi('Başarı Sertifikası', W / 2, 600, '700 120px Unbounded', '#111126');
+      yazi('Başarı Sertifikası', W / 2, 600, '700 120px Unbounded', '#111126', 'center', W - 300);
       yazi('Bu belge,', W / 2, 720, '500 44px Inter', '#4A4870');
       yazi(isim, W / 2, 850, '800 112px Inter', ad ? '#111126' : 'rgba(17,17,38,.3)', 'center', W - 600);
       g.strokeStyle = '#A34DF5'; g.lineWidth = 4; g.beginPath(); g.moveTo(W / 2 - 520, 890); g.lineTo(W / 2 + 520, 890); g.stroke();
-      yazi('adlı kişinin Vibe Kafası Akademi\'nin 10 modül ve 52 dersten oluşan', W / 2, 980, '500 44px Inter', '#4A4870');
-      yazi('“Sıfırdan Yapay Zekâyla Yazılım” programını tamamladığını', W / 2, 1044, '500 44px Inter', '#4A4870');
-      yazi('ve mezuniyet sınavını ' + mz.puan + '/15 ile geçtiğini gösterir.', W / 2, 1108, '500 44px Inter', '#4A4870');
+      yazi('adlı kişinin Vibe Kafası Akademi\'nin 10 modül ve 52 dersten oluşan', W / 2, 980, '500 44px Inter', '#4A4870', 'center', W - 300);
+      yazi('“Sıfırdan Yapay Zekâyla Yazılım” programını tamamladığını', W / 2, 1044, '500 44px Inter', '#4A4870', 'center', W - 300);
+      yazi('ve mezuniyet sınavını ' + mz.puan + '/15 ile geçtiğini gösterir.', W / 2, 1108, '500 44px Inter', '#4A4870', 'center', W - 300);
       ROZ.forEach(function (r, i) { altigen(W / 2 + (i - 4.5) * 150, 1260, 58, r); });
       yazi(tarih, 420, 1480, '700 40px Inter', '#111126'); yazi('Tarih', 420, 1530, '500 30px Inter', '#77749F');
       yazi(mz.no, W - 420, 1480, '700 40px Inter', '#111126'); yazi('Belge no', W - 420, 1530, '500 30px Inter', '#77749F');
       yazi('vibekafasi.github.io/akademi', W / 2, 1480, '800 38px Inter', '#6E3BD1'); yazi('@vibe.kafasi', W / 2, 1530, '600 32px Inter', '#F49A46');
-      yazi('Katılım ve başarı belgesidir; resmî bir diploma ya da akredite bir sertifika değildir.', W / 2, 1610, '500 26px Inter', '#9A98B8');
+      yazi('Katılım ve başarı belgesidir; resmî bir diploma ya da akredite bir sertifika değildir.', W / 2, 1610, '500 26px Inter', '#9A98B8', 'center', W - 300);
     }
   }
 
@@ -379,6 +379,26 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     });
   });
 
+  // ana sayfa: modül kutuları katlanır (sıradaki dersin modülü açık gelir)
+  var modKutu = document.querySelectorAll('.anasayfa .modul');
+  if (modKutu.length) {
+    var siradaki = SIRA.find(function (x) { return !D.bitti[x[0]]; });
+    var acikM = siradaki ? siradaki[2] : modKutu[0].id;
+    var ruM = window.AKD_DIL === 'ru', enM = window.AKD_DIL === 'en';
+    var modAc = function (m, ac) { m.classList.toggle('kapali', !ac); var b = m.querySelector('.mb'); if (b) b.setAttribute('aria-expanded', ac ? 'true' : 'false'); };
+    modKutu.forEach(function (m) {
+      var mb = m.querySelector('.mb'); if (!mb) return;
+      m.classList.add('katlanir'); mb.setAttribute('role', 'button'); mb.tabIndex = 0;
+      mb.setAttribute('aria-label', (ruM ? 'Открыть или закрыть модуль: ' : enM ? 'Open or close module: ' : 'Modülü aç / kapat: ') + (mb.querySelector('h2') ? mb.querySelector('h2').textContent : ''));
+      var ok = document.createElement('i'); ok.className = 'mod-ok'; ok.setAttribute('aria-hidden', 'true'); mb.appendChild(ok);
+      modAc(m, m.id === acikM);
+      mb.addEventListener('click', function () { modAc(m, m.classList.contains('kapali')); });
+      mb.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); modAc(m, m.classList.contains('kapali')); } });
+    });
+    var hashAc = function () { var m = location.hash && document.getElementById(location.hash.slice(1)); if (m && m.classList.contains('modul')) modAc(m, true); };
+    addEventListener('hashchange', hashAc); hashAc();
+  }
+
   // ana sayfa: ders arama (başlık + konu anahtarları)
   var da = document.getElementById('dersAra');
   if (da) {
@@ -391,8 +411,9 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
         m.querySelectorAll('li[data-d]').forEach(function (li) { var ok = !q || trk(li.textContent + ' ' + (li.getAttribute('data-k') || '')).indexOf(q) > -1; li.classList.toggle('ara-gizli', !ok); if (ok) g++; });
         m.classList.toggle('ara-gizli', !!q && !g); n += g;
       });
-      var ru = window.AKD_DIL === 'ru';
-      sonuc.textContent = q ? (n ? (ru ? 'Найдено уроков: ' + n : n + ' ders bulundu') : (ru ? 'Ничего не найдено. Попробуй другое слово или загляни в словарь.' : 'Ders bulunamadı. Başka bir kelime dene ya da sözlüğe bak.')) : '';
+      document.documentElement.classList.toggle('ara-modu', !!q);
+      var ru = window.AKD_DIL === 'ru', en = window.AKD_DIL === 'en';
+      sonuc.textContent = q ? (n ? (ru ? 'Найдено уроков: ' + n : en ? n + (n === 1 ? ' lesson found' : ' lessons found') : n + ' ders bulundu') : (ru ? 'Ничего не найдено. Попробуй другое слово или загляни в словарь.' : en ? 'No lessons found. Try another word or check the glossary.' : 'Ders bulunamadı. Başka bir kelime dene ya da sözlüğe bak.')) : '';
     });
   }
 
