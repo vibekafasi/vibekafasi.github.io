@@ -458,3 +458,12 @@ footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{ba
 .modul.katlanir:not(.kapali) ol{animation:mod-ac .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes mod-ac{from{opacity:0;transform:translateY(-6px)}}
 @media (prefers-reduced-motion:reduce){.modul.katlanir:not(.kapali) ol{animation:none}}
+
+/* tanıtım videosu: tam ekran düğmesi */
+.tam-dug{position:absolute;right:16px;bottom:16px;width:44px;height:44px;display:grid;place-items:center;background:rgba(11,11,28,.75);color:#fff;border:1px solid rgba(255,255,255,.2);border-radius:50%;cursor:pointer;backdrop-filter:blur(6px);padding:0}
+.tam-dug svg{width:20px;height:20px}
+.tam-dug:hover{background:rgba(163,77,245,.6)}
+.tam-dug:focus-visible,.ses-dug:focus-visible{outline:2px solid #28D5D7;outline-offset:2px}
+.tv .ses-dug{right:68px}
+.tv video:fullscreen{object-fit:contain;background:#000}
+@media (max-width:520px){.tv .ses-dug{font-size:12px;padding:8px 12px;bottom:12px;right:60px}.tam-dug{width:38px;height:38px;bottom:12px;right:12px}}

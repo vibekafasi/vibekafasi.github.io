@@ -434,6 +434,30 @@ window.AKD_SOZ={"yapay-zeka": ["Yapay zekâ", "Bilgisayarların yazmak, konuşma
     });
   }
 
+  // tanıtım videosu: tam ekran düğmesi (videoya dokununca da açılır)
+  (function () {
+    var v = document.getElementById('tanVid'); if (!v) return;
+    var kap = v.parentNode, dl = window.AKD_DIL;
+    var et = dl === 'ru' ? 'Во весь экран' : dl === 'en' ? 'Full screen' : 'Tam ekran';
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'tam-dug'; b.setAttribute('aria-label', et); b.title = et;
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+    kap.appendChild(b);
+    function tamAc() {
+      try {
+        v.muted = false; v.currentTime = 0; v.play().catch(function () {});
+        var sd = document.getElementById('sesDug'); if (sd) sd.textContent = dl === 'ru' ? '🔇 Выключить звук' : dl === 'en' ? '🔇 Sound off' : '🔇 Sesi kapat';
+        if (v.requestFullscreen) v.requestFullscreen().catch(function () { if (v.webkitEnterFullscreen) v.webkitEnterFullscreen(); });
+        else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
+        else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+        olay('tanitim-tam-ekran', 'Tanıtım videosu tam ekran');
+      } catch (e) {}
+    }
+    b.addEventListener('click', function (e) { e.stopPropagation(); tamAc(); });
+    v.addEventListener('click', tamAc);
+    v.style.cursor = 'zoom-in';
+    document.addEventListener('fullscreenchange', function () { v.controls = document.fullscreenElement === v; });
+  })();
+
   // tanıtım videosu: sessiz başlar, düğmeyle ses açılır
   var tv = document.getElementById('tanVid'), sd = document.getElementById('sesDug');
   if (tv && sd) {
