@@ -135,3 +135,6 @@ html.vk-ara-acik{overflow:hidden}
   .vk-icindekiler{border:1px solid #999}
   .vk-icindekiler:not([open]) > nav{display:block}
 }
+
+/* kılavuz ekran görüntüleri: genişlik/yükseklik bilgisi kaymayı önler, oran korunur */
+.ekran img{height:auto}

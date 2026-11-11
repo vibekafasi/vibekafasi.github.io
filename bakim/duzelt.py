@@ -291,6 +291,7 @@ def hreflang_duzelt(h, yol):
     return re.sub(r'<link rel="alternate" hreflang="([a-z-]+)" href="[^"]*">', f, h)
 
 
+SIMGE = {'tr': 'Simge', 'ru': 'Значок', 'en': 'Icon'}
 VIDEO_H2 = {'tr': 'Bütün videolar', 'ru': 'Все видео', 'en': 'All videos'}
 
 
@@ -353,7 +354,7 @@ def erisim(h, yol, dil):
     if t == '/kilavuz/':
         h = h.replace('.kk h4{', '.kk h3,.kk h4{').replace('.kk h3,.kk h3,.kk h4{', '.kk h3,.kk h4{')
         h = re.sub(r'(<div class="kk">\s*)<h4>(.*?)</h4>', r'\1<h3>\2</h3>', h, flags=re.S)
-        h = h.replace('<tr><th></th>', '<tr><td></td>')
+        h = h.replace('<tr><th></th>', f'<tr><th scope="col"><span class="vk-gizli">{SIMGE[dil]}</span></th>').replace('<tr><td></td>', f'<tr><th scope="col"><span class="vk-gizli">{SIMGE[dil]}</span></th>')
     if t == '/kafa/':
         h = h.replace('<canvas id="bg">', '<canvas id="bg" aria-hidden="true">').replace('<canvas id="holo">', '<canvas id="holo" aria-hidden="true">')
         h = h.replace('<div id="havaImlec"></div>', '<div id="havaImlec" aria-hidden="true"></div>').replace('<div id="sahne">', '<div id="sahne" role="main">')
