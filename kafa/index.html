@@ -47,7 +47,7 @@ canvas#bg{position:fixed;inset:0;width:100%;height:100%}
 #acilis.bitti{opacity:0;pointer-events:none}
 .boot-halka{width:150px;height:150px;border-radius:50%;border:3px solid rgba(40,213,215,.15);border-top-color:var(--tq);animation:don 1s linear infinite;box-shadow:0 0 30px rgba(40,213,215,.3)}
 .boot-yuzde{font-family:Orbitron;font-size:30px;color:var(--tq);margin-top:-95px;height:60px}
-.boot-log{margin-top:70px;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--soluk);width:460px;min-height:130px;line-height:1.8}
+.boot-log{margin-top:70px;font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--soluk);width:460px;max-width:calc(100vw - 32px);min-height:130px;line-height:1.8;overflow-wrap:anywhere}
 .boot-log .ok{color:var(--yesil)}
 .flas{position:absolute;inset:0;background:radial-gradient(circle,rgba(40,213,215,.55),transparent 60%);opacity:0;pointer-events:none;z-index:19}
 .flas.on{animation:flas .7s ease-out}
@@ -240,6 +240,7 @@ body.uyku #uykuYazi{opacity:1}
 #aktar{font:600 13px Inter,sans-serif;color:#0b0b1c;background:var(--or);border:0;border-radius:20px;padding:7px 14px;cursor:pointer;box-shadow:0 0 18px rgba(244,154,70,.45);position:relative;z-index:30}
 #ornekEtiket{font:700 10px Inter,sans-serif;letter-spacing:2px;color:var(--or);border:1px solid var(--or);border-radius:10px;padding:2px 7px;margin-left:10px;vertical-align:middle}
 .bos{color:var(--soluk);font-size:14px;padding:6px 0}
+#uygDug{font:700 13px Inter,sans-serif;color:#fff;background:rgba(163,77,245,.25);border:1px solid rgba(163,77,245,.7);border-radius:20px;padding:7px 14px;cursor:pointer;position:relative;z-index:30;margin-right:8px}
 #kurDug{font:700 13px Inter,sans-serif;color:#0b0b1c;background:linear-gradient(135deg,var(--tq),#7cf0f1);border:0;border-radius:20px;padding:7px 14px;cursor:pointer;box-shadow:0 0 20px rgba(40,213,215,.5);position:relative;z-index:30;animation:kurNabiz 2.4s ease-in-out infinite}
 @keyframes kurNabiz{50%{box-shadow:0 0 34px rgba(40,213,215,.85)}}
 #kurKutu{position:fixed;inset:0;z-index:80;background:rgba(5,5,16,.72);backdrop-filter:blur(6px);display:grid;place-items:center;padding:16px}
@@ -251,7 +252,7 @@ body.uyku #uykuYazi{opacity:1}
 #kurKutu .kkA{font-size:13px;color:var(--soluk);margin-bottom:16px}
 #kurKutu .kkT{display:inline-block;background:var(--tq);color:#0b0b1c;font-weight:800;border-radius:22px;padding:10px 18px;text-decoration:none}
 #kurKutu .kapat{position:absolute;top:12px;right:12px;background:none;border:0;color:var(--soluk);font-size:18px;cursor:pointer}
-@media (max-width:760px){#kurDug{padding:6px 10px;font-size:12px}}
+@media (max-width:760px){#kurDug{padding:6px 10px;font-size:12px}#uygDug{padding:6px 10px;font-size:12px;margin-right:4px}}
 #mimikDug{display:inline-block;margin-top:6px;margin-left:4px;font-size:11.5px;color:var(--or);border:1px solid rgba(244,154,70,.5);border-radius:14px;padding:2px 9px;cursor:pointer}
 #mimikDug.kapali{color:var(--soluk);border-color:rgba(255,255,255,.2)}
 body.bakmiyor #sahne{filter:brightness(.55) saturate(.6);transition:filter .6s}
@@ -288,7 +289,7 @@ body.sohbetAcik #balon{bottom:200px!important}
 <div class="kkA">Bilgilerin linkin içinde durur, hiçbir sunucuya gitmez.</div>
 <a class="kkT" href="https://t.me/vibekafasi" target="_blank" rel="noopener">Telegram kanalına git</a>
 </div></div>
-<div class="ust"><div class="logo"><b>KAFA</b> ASİSTAN</div><button id="aktar" hidden onclick="aktar()">📋 Claude'a aktar</button><button id="kurDug" hidden onclick="document.getElementById('kurKutu').hidden=false">✨ Kendi panelini kur</button>
+<div class="ust"><div class="logo"><b>KAFA</b> ASİSTAN</div><button id="aktar" hidden onclick="aktar()">📋 Claude'a aktar</button><button id="uygDug" hidden>📲 Uygulama olarak kur</button><button id="kurDug" hidden onclick="document.getElementById('kurKutu').hidden=false">✨ Kendi panelini kur</button>
     <div class="durum"><span>Defter</span><span>Hafıza</span><span>Takvim</span></div>
     <div class="saat" id="saat"></div></div>
 
@@ -700,10 +701,14 @@ document.querySelectorAll('.dug')[1].onclick=()=>sohbetAc('ekle: ');document.que
 const KIS={var:false,d:null,degis:[]};
 function b64uCoz(s){s=s.replace(/-/g,'+').replace(/_/g,'/');while(s.length%4)s+='=';const b=atob(s);return Uint8Array.from(b,c=>c.charCodeAt(0))}
 function b64uYap(by){let s='';for(let i=0;i<by.length;i+=8192)s+=String.fromCharCode.apply(null,by.subarray(i,i+8192));return btoa(s).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
-async function hashOku(){const m=location.hash.slice(1).match(/^(k|j)=([A-Za-z0-9_-]+)$/);if(!m)return null;
+async function hashOku(){
+  // uygulama olarak açılınca link (#k=…) gelmez: bu cihazda son açılan kişisel panel hatırlanır. #sil ile unutulur.
+  try{const h=location.hash.slice(1);if(h==='sil'){localStorage.removeItem('kafaPanelLink');history.replaceState(null,'',location.pathname);setTimeout(()=>balon('🧹 Panelin bu cihazdan silindi.',6000),1500)}
+    else if(!/^(k|j)=/.test(h)){const s=localStorage.getItem('kafaPanelLink');if(s&&/^(k|j)=[A-Za-z0-9_-]+$/.test(s))history.replaceState(null,'','#'+s)}}catch(e){}
+  const m=location.hash.slice(1).match(/^(k|j)=([A-Za-z0-9_-]+)$/);if(!m)return null;
   try{let by=b64uCoz(m[2]);if(m[1]==='k'){by=new Uint8Array(await new Response(new Blob([by]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer())}
     const d=JSON.parse(new TextDecoder().decode(by));return (d&&typeof d==='object')?d:'bozuk'}catch(e){return 'bozuk'}}
-async function hashYaz(){try{const by=new TextEncoder().encode(JSON.stringify(KIS.d));const z=new Uint8Array(await new Response(new Blob([by]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer());history.replaceState(null,'','#k='+b64uYap(z))}catch(e){}}
+async function hashYaz(){try{const by=new TextEncoder().encode(JSON.stringify(KIS.d));const z=new Uint8Array(await new Response(new Blob([by]).stream().pipeThrough(new CompressionStream('deflate-raw'))).arrayBuffer());history.replaceState(null,'','#k='+b64uYap(z));try{localStorage.setItem('kafaPanelLink',location.hash.slice(1))}catch(e){}}catch(e){}}
 const kirp=(x,n=90)=>String(x==null?'':x).replace(/\s+/g,' ').trim().slice(0,n);
 const dizi=(x,n)=>Array.isArray(x)?x.slice(0,n):[];
 function ogeYap(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
@@ -745,8 +750,15 @@ function degisti(satir){KIS.degis.push(satir);hashYaz();const a=$('#aktar');a.te
 async function aktar(){const m="Kafa, panelde şunları yaptım, defterime işle:\n"+KIS.degis.map(x=>'- '+x).join('\n');
   try{await navigator.clipboard.writeText(m);balon('📋 Kopyalandı. Claude\'da KAFA sohbetine <b>yapıştır</b> ve gönder.',6000)}
   catch(e){balon('Şunu kopyala ve Claude\'a yapıştır:<br><textarea readonly style="width:100%;height:90px;margin-top:6px">'+m.replace(/</g,'&lt;')+'</textarea>',15000)}}
+// ---------- uygulama olarak kur (PWA) ----------
+let _kurOlay=null;addEventListener('beforeinstallprompt',e=>{e.preventDefault();_kurOlay=e});
+addEventListener('appinstalled',()=>{_kurOlay=null;const b=$('#uygDug');if(b)b.hidden=true;balon('✅ KAFA kuruldu. Artık simgesinden açabilirsin.',6000)});
+function uygKur(){const b=$('#uygDug');if(!b)return;const kurulu=matchMedia('(display-mode: standalone)').matches||navigator.standalone;if(kurulu)return;b.hidden=false;
+  b.onclick=async()=>{if(_kurOlay){_kurOlay.prompt();try{await _kurOlay.userChoice}catch(e){}_kurOlay=null;return}
+    const ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);balon(ios?"📲 iPhone/iPad: Safari'de alttaki <b>Paylaş</b> (□↑) → <b>Ana Ekrana Ekle</b> → <b>Ekle</b>. KAFA simgesi ana ekrana gelir.":"📲 Tarayıcı menüsünden (⋮) <b>Uygulamayı yükle</b> ya da <b>Ana ekrana ekle</b>'yi seç. Bilgisayarda adres çubuğunun sağındaki ⊕ simgesine de basabilirsin.",12000)}}
+if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
 (async()=>{const d=await hashOku();
-  if(d&&d!=='bozuk'){try{veriUygula(d)}catch(e){console.error(e)}}
+  if(d&&d!=='bozuk'){try{veriUygula(d)}catch(e){console.error(e)}try{localStorage.setItem('kafaPanelLink',location.hash.slice(1))}catch(e){}uygKur()}
   else{const t=document.createElement('span');t.id='ornekEtiket';t.textContent='ÖRNEK';$('.logo').appendChild(t);
     document.getElementById('kurDug').hidden=false;
     setTimeout(()=>balon(d==='bozuk'?'⚠️ Bu link eksik ya da bozuk. Claude\'da KAFA\'ya <b>panelimi aç</b> yazıp yeni link iste.':'👀 Bu <b>örnek</b> panel. Kendi panelin için üstteki <b>✨ Kendi panelini kur</b> düğmesine bas.',9000),8500)}
