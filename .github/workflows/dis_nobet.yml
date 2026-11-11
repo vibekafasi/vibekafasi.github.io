@@ -1,0 +1,36 @@
+# VIBE KAFASI — DIŞ NÖBET: sunucu tamamen kapansa bile haber verir (GitHub'ın ücretsiz bilgisayarında çalışır).
+# Herkese açık depoda GitHub Actions ücretsiz: 15 dakikada bir çalışır. Gizli bilgiler (bot anahtarı, chat id) yalnız depo Secrets içinde.
+name: Dis nobet
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+concurrency:
+  group: dis-nobet
+  cancel-in-progress: false
+jobs:
+  nobet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Son durumu yükle
+        uses: actions/cache/restore@v4
+        with:
+          path: .durum
+          key: durum-${{ github.run_id }}
+          restore-keys: durum-
+      - name: Siteye bak
+        run: bash bakim/dis_nobet.sh
+        env:
+          TG_TOKEN: ${{ secrets.FABRIKA_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+          HEDEF_URL: ${{ vars.HEDEF_URL || 'https://fabrika.lorusseos.com' }}
+      - name: Durumu kaydet
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .durum
+          key: durum-${{ github.run_id }}
