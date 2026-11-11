@@ -1,0 +1,43 @@
+{
+ "id": "/en/kafa/",
+ "name": "KAFA Assistant",
+ "short_name": "KAFA",
+ "description": "Your personal AI assistant: daily plan, tasks, notes, money log.",
+ "lang": "en",
+ "dir": "ltr",
+ "start_url": "/en/kafa/",
+ "scope": "/en/kafa/",
+ "display": "standalone",
+ "orientation": "any",
+ "background_color": "#111126",
+ "theme_color": "#111126",
+ "categories": [
+  "productivity"
+ ],
+ "icons": [
+  {
+   "src": "/assets/ikon/kafa-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/ikon/kafa-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "/assets/ikon/kafa-maskable-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "maskable"
+  },
+  {
+   "src": "/assets/ikon/kafa-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
