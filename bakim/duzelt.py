@@ -357,6 +357,7 @@ def erisim(h, yol, dil):
         h = h.replace('<tr><th></th>', f'<tr><th scope="col"><span class="vk-gizli">{SIMGE[dil]}</span></th>').replace('<tr><td></td>', f'<tr><th scope="col"><span class="vk-gizli">{SIMGE[dil]}</span></th>')
     if t == '/kafa/':
         h = h.replace('<canvas id="bg">', '<canvas id="bg" aria-hidden="true">').replace('<canvas id="holo">', '<canvas id="holo" aria-hidden="true">')
+        h = h.replace('<h1 id="selam"></h1>', '<h1 id="selam"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">KAFA ASİSTAN</span></h1>')
         h = h.replace('<div id="havaImlec"></div>', '<div id="havaImlec" aria-hidden="true"></div>').replace('<div id="sahne">', '<div id="sahne" role="main">')
     return h
 
