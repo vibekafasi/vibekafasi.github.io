@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Son durumu yükle
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .durum
           key: durum-${{ github.run_id }}
@@ -30,7 +30,7 @@ jobs:
           HEDEF_URL: ${{ vars.HEDEF_URL || 'https://fabrika.lorusseos.com' }}
       - name: Durumu kaydet
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .durum
           key: durum-${{ github.run_id }}
