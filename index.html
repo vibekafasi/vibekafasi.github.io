@@ -355,7 +355,7 @@ footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{ba
   </div>
 </section>
 
-<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>STÜDYO</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>STÜDYO</span><span>İLK MÜŞTERİ</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span></div></div>
+<div class="serit" aria-hidden="true"><div><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>STÜDYO</span><span>İLK MÜŞTERİ</span><span>TURBO</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span><span>KAFA ASİSTAN</span><span>MAHKEME</span><span>ÇİZGİ FİLM REHBERİ</span><span>STÜDYO</span><span>İLK MÜŞTERİ</span><span>TURBO</span><span>GÜVENLİ BAŞLANGIÇ</span><span>KOD BEKÇİSİ</span><span>ÇALIŞMIYOR</span></div></div>
 
 <section class="akd-bant">
   <div class="kap">
@@ -419,6 +419,15 @@ footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{ba
         <p>Önce sat, sonra yap. Küçük satış ekibin gibi çalışır: gerçek dertleri bulur, satış sayfanı kurar, ilk ödeyen müşterin için 14 günlük yol çizer.</p>
         <ul><li>İnsanların gerçekten şikâyet ettiği dertler, linkleriyle</li><li>Rakipler, 3 paket fiyat ve paylaşılabilir satış sayfası</li><li>Hazır mesajlar, satış provası ve 14 günlük plan</li></ul>
         <div class="alt-sira"><a class="dug cam kucuk" href="https://t.me/vibekafasibot?start=dert" target="_blank" rel="noopener">Telegram'dan al</a></div>
+      </article>
+
+      <article class="kart gor" data-renk="mor">
+        <div class="rozetler"><span class="rz ucr">Ücretsiz rehber</span></div>
+        <div class="ikon i-mor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <h3>TURBO</h3>
+        <p>Bir konu yaz, videoyu o çıkarsın: metin, görüntü, Türkçe ses ve altyazı. Açık kaynak MoneyPrinterTurbo'yu adım adım kurma rehberi.</p>
+        <ul><li>Windows tek tık kurulum, Colab ve Docker</li><li>Ücretsiz anahtarlar ve Türkçe ses</li><li>Sık hatalar ve çözümleri</li></ul>
+        <div class="alt-sira"><a class="dug cam kucuk" href="https://t.me/vibekafasibot?start=turbo" target="_blank" rel="noopener">Telegram'dan al</a></div>
       </article>
 
       <article class="kart yakinda gor" data-renk="or"><span class="kilit">YAKINDA</span>
@@ -500,7 +509,7 @@ const go=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.gor').forEach((el,i)=>{el.style.transitionDelay=(el.closest('.bento,.adimlar,.guven')?(i%3)*.08:0)+'s';go.observe(el)});
 // sayaç: yalnız gerçek sayılar (assets/sayilar.json, bot istatistiğinden). Dosya yoksa sayaç görünmez.
 fetch('assets/sayilar.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
-  if(!d||!d.araclar)return;const ad={mahkeme:'Mahkeme',cizgifilm:'Çizgi Film',kafa:'KAFA Asistan',studyo:'Stüdyo'};
+  if(!d||!d.araclar)return;const ad={mahkeme:'Mahkeme',cizgifilm:'Çizgi Film',kafa:'KAFA Asistan',studyo:'Stüdyo',dert:'İlk Müşteri',turbo:'TURBO'};
   const top=Object.values(d.araclar).reduce((a,b)=>a+(+b||0),0);if(top<1)return;
   const el=document.getElementById('sayac'),n=document.getElementById('sy-top');el.hidden=false;
   document.getElementById('sy-alt').innerHTML=Object.entries(d.araclar).filter(([k,v])=>v>0).map(([k,v])=>`<span>${ad[k]||k} <b>${(+v).toLocaleString('tr-TR')}</b></span>`).join('');
