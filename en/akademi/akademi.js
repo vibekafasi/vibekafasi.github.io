@@ -78,6 +78,16 @@ window.AKD_SOZ={"yapay-zeka": ["Artificial intelligence", "Computers doing jobs 
     var bt = document.getElementById('bitir'), not = document.querySelector('.bitti-not');
     function btGuncel() { var b = !!D.bitti[did]; bt.classList.toggle('yapildi', b); bt.classList.toggle('ana', !b); bt.textContent = b ? '✓ Finished (undo)' : '✓ I finished this lesson'; not.hidden = !b; }
     if (bt) { btGuncel(); bt.addEventListener('click', function () { var once = modulTam(modOf(did)); if (D.bitti[did]) delete D.bitti[did]; else D.bitti[did] = Date.now(); yaz(D); btGuncel(); isaretle(); if (!once && modulTam(modOf(did))) { rozetKutla(modOf(did)); olay('modul-' + modNo(did) + '-bitti', 'Modül ' + modNo(did) + ' sonuna gelindi'); } }); }
+    // "Sıradaki ders" büyük düğmesi (2026-11-28): 1. dersten 2. derse geçişte gelenlerin yarısı kayboluyordu. Sayfanın en altındaki küçük kart yerine,
+    // "Bu dersi bitirdim"in hemen altında belirgin düğme; yazısı sayfanın kendi "Sonraki ders" kartından alınır (TR/RU/EN aynı kod). Tıklama sayılır.
+    var snrK = document.querySelector('.gecis .snr');
+    if (bt && snrK && did) {
+      var cta = document.createElement('a'); cta.className = 'sonraki-cta'; cta.href = snrK.getAttribute('href'); cta.setAttribute('data-olay', 'sonraki-' + did);
+      var c1 = document.createElement('small'), c2 = document.createElement('span'), k1 = snrK.querySelector('small'), k2 = snrK.querySelector('span');
+      c1.textContent = k1 ? k1.textContent : '→'; c2.textContent = k2 ? k2.textContent : ''; cta.appendChild(c1); cta.appendChild(c2);
+      bt.parentNode.insertAdjacentElement('afterend', cta);
+      bt.addEventListener('click', function () { if (D.bitti[did]) { cta.classList.remove('parla'); void cta.offsetWidth; cta.classList.add('parla'); } });
+    }
     var sorular = document.querySelectorAll('.soru'), cevap = 0, dogruSay = 0;
     sorular.forEach(function (s) {
       var dg = +s.getAttribute('data-dogru');

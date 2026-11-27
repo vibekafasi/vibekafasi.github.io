@@ -467,3 +467,13 @@ footer .kanal a.sos-telegram:hover,footer .kanal a.sos-telegram:focus-visible{ba
 .tv .ses-dug{right:68px}
 .tv video:fullscreen{object-fit:contain;background:#000}
 @media (max-width:520px){.tv .ses-dug{font-size:12px;padding:8px 12px;bottom:12px;right:60px}.tam-dug{width:38px;height:38px;bottom:12px;right:12px}}
+
+/* Sıradaki ders büyük düğmesi (2026-11-28) */
+.sonraki-cta{display:grid;gap:4px;margin:18px 0 6px;padding:18px 22px;border-radius:18px;background:linear-gradient(135deg,#A34DF5,#6d3bd8);color:#fff;text-decoration:none;box-shadow:0 8px 28px rgba(163,77,245,.35);transition:transform .15s,box-shadow .2s}
+.sonraki-cta small{font-size:13px;font-weight:600;color:rgba(255,255,255,.85)}
+.sonraki-cta span{font-size:18px;font-weight:800;line-height:1.3;color:#fff}
+.sonraki-cta:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(163,77,245,.5);text-decoration:none}
+.sonraki-cta:focus-visible{outline:3px solid #28D5D7;outline-offset:3px}
+.sonraki-cta.parla{animation:snrParla 1.1s ease 2}
+@keyframes snrParla{50%{box-shadow:0 0 0 7px rgba(40,213,215,.45)}}
+@media (prefers-reduced-motion:reduce){.sonraki-cta,.sonraki-cta.parla{animation:none;transition:none}}
